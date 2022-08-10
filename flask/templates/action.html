@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>你的海有多髒</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static',    filename='css/basic.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+<body>
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-title">
+                <p class="fs-1 card-title">我可以做什麼...</p>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="action-card"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <a  class="d-grid col-4 mx-auto" href="/upload">
+                <button type="button" class="btn btn-primary btn-lg">
+                    <i class="fa fa-repeat" aria-hidden="true"></i>重新上傳
+                </button>
+            </a>
+        </div>
+
+    </div>
+</body>
+</html>
