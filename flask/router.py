@@ -10,7 +10,11 @@ classified_list = [
 	{'filename':"ocean.jpg",'Title':"海上活動與船隻(Ocean/Waterway Activities)"},
 	{'filename':"ocean.jpg",'Title':"抽煙相關行為(Smoking-related activities)"}
 	]
-
+action_img = [
+	{'filename':"action1.png",'Title':"減少使用"},
+	{'filename':"action2.png",'Title':"垃圾不落地"},
+	{'filename':"action3.png",'Title':"參與淨灘"}
+]
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -37,7 +41,7 @@ def result():
 
 @app.route('/action')
 def action():
-	return render_template('action.html')
+	return render_template('action.html', img = action_img)
 
 @app.route('/404')
 def error():
