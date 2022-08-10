@@ -8,7 +8,28 @@
         <link type="text/css" rel="stylesheet" href="{{ url_for('static',    filename='css/basic.css') }}">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-<body  class="d-flex justify-content-center align-items-center">
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <!-- TODO three.js -->
+                <img src="/static/img/taiwai-map.png" class="img-fluid" alt="Taiwai">
+            </div>
+            <div class="col-6 text-center">
+                <div class="card">
+                    <p class="card-title">海灘污染物排名</p>
+                </div>
+                <div class="d-grid gap-2">
+                    <a  href="/rank">
+                        <button type="button" class="btn btn-primary btn-lg">
+                            <i class="fa fa-camera" aria-hidden="true"></i>AI判斷
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

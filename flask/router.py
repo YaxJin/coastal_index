@@ -6,7 +6,7 @@ app=Flask(__name__)
 bootstrap = Bootstrap5(app)
 
 classified_list = [
-	{'filename':"ocean.jpg",'Title':"海岸遊憩與日常生活(Shoreline and recreational activities)"},
+	{'filename':"type1.png",'Title':"海岸遊憩與日常生活(Shoreline and recreational activities)"},
 	{'filename':"ocean.jpg",'Title':"海上活動與船隻(Ocean/Waterway Activities)"},
 	{'filename':"ocean.jpg",'Title':"抽煙相關行為(Smoking-related activities)"}
 	]
