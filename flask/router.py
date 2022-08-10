@@ -27,9 +27,30 @@ def classified():
 def rank():
 	return render_template('rank.html')
 
+@app.route('/upload')
+def upload():
+	return render_template('upload.html')
+
+@app.route('/result')
+def result():
+	return render_template('result.html')
+
+@app.route('/action')
+def action():
+	return render_template('action.html')
+
+@app.route('/404')
+def error():
+	return render_template('404.html')
+# @app.errorhandler(404)
+# def page_not_found(e):
+#     return render_template('404.html'), 404
+
+
+##### debug #####
 @app.route('/test')
 def test():
 	return render_template('test.html')
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0',port='8080',debug=True)
+	app.run(host='0.0.0.0',port='8000',debug=True)
