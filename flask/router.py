@@ -33,7 +33,7 @@ def upload():
 
 @app.route('/result')
 def result():
-	return render_template('result.html')
+	return render_template('upload_result.html')
 
 @app.route('/action')
 def action():
