@@ -12,7 +12,9 @@ p,h1{
 a, a:hover{
    text-decoration: none;
 }
-
+i{
+   padding: inherit;
+}
 
 .start-title{
    font-weight: bold;
@@ -36,10 +38,18 @@ a, a:hover{
    background: rgba(159, 157, 158, 0.36);
    border-radius: 20px;
    }
+.carousel{
+   margin: 5vh 0;
+}
+.carousel-text{
+   font-size: 20px;
+   color: #303030;
+}
 .btn-primary{
    background-color: #014959;
    border-color:#014959;
    font-family: 'Noto Serif TC', serif;
+   font-size: 29px;
 }
 .text{
    font-size: 29px;
