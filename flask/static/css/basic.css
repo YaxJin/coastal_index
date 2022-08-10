@@ -1,0 +1,57 @@
+body{
+    height:100vh;
+    background-image:url('/static/img/ocean.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+ }
+p,h1{
+   color: white;
+   font-family: 'Noto Serif TC', serif;
+}
+a, a:hover{
+   text-decoration: none;
+}
+
+
+.start-title{
+   font-weight: bold;
+   letter-spacing: 0.2rem;
+}
+.title{
+   /* margin: 2vh; */
+}
+
+.text-border{
+   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+   /* -webkit-text-stroke: calc(0.05rem + 0.01vw) black; */
+}
+.container{
+   padding: 5vh;
+}
+.card{
+   margin: 5vh 0;
+   padding: 5vh;
+   height: 60vh;
+   background: rgba(159, 157, 158, 0.36);
+   border-radius: 20px;
+   }
+.btn-primary{
+   background-color: #014959;
+   border-color:#014959;
+   font-family: 'Noto Serif TC', serif;
+}
+.text{
+   font-size: 29px;
+   font-weight: 600;
+}
+/* @media (min-width: 600px) and (max-width: 1200px) {
+   .text {
+    font-size: calc(1.2rem + 0.1 * ((100vw - 600px) / 600));
+   }
+ }
+ @media (min-width: 1200px) {
+   .text {
+      font-size: 1.3rem;
+   }
+ } */

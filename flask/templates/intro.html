@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>你的海有多髒</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static',    filename='css/basic.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+<body>
+    <div class="container">
+        <div class="grid">
+            <div class="g-col-12">
+                <div class="card text-center">
+                    <p class="text">每年會有幾萬噸的廢棄物
+                        <br class="d-none d-md-block d-lg-none">
+                        被人們丟到海裡，
+                        <br class="d-none d-md-block d-lg-none">
+                        經過海浪的潮汐，
+                        <br>
+                        最終漂流回海岸邊，
+                        <br class="d-none d-md-block d-lg-none">
+                        成為海岸美景的破壞者。
+                        <br>
+                        台灣四面環海，
+                        <br class="d-none d-md-block d-lg-none">
+                        究竟你我身邊的海岸
+                        <br class="d-none d-md-block d-lg-none">
+                        是不是髒亂的呢?
+                        <br>
+                        讓AI來告訴我們，
+                        <br class="d-none d-md-block d-lg-none">
+                        這些海灘是不是
+                        <br class="d-none d-md-block d-lg-none">
+                        需要被清理的吧!
+                    </p>
+                </div>
+            </div>
+            <div class="g-col-12">
+                <div class="row justify-content-center">
+                    <a  class="d-grid col-4 mx-auto" href="/classified">
+                        <button type="button" class="btn btn-primary btn-lg">
+                            <i class="fa fa-trash"></i>廢棄物種類
+                        </button>
+                        </a>
+                    <a  class="d-grid col-4 mx-auto" href="/rank">
+                        <button type="button" class="btn btn-primary btn-lg">
+                            <i class="fa fa-list-ol" aria-hidden="true"></i>汙染排名
+                        </button>
+                    </a>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
