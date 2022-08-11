@@ -19,7 +19,31 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <div class="action-card"></div>
+                    {% for file in img %}
+                        {% if loop.index%2 != 0 %}
+                            <div class="action-card row justify-content-center">
+                                <p class="action-card-no col-1">{{loop.index}}</p>
+                                <div class="action-card-title col-7 text-center">
+                                    <p class="action-card-title">{{ file.Title }}</p>
+                                </div>
+                                <div class="col-4">
+                                    <img class="action-card-img" src="static/img/{{ file.filename }}" alt="{{ file.Title }}">
+                                </div>
+                            </div>
+                        {% else %}
+                        <div class="action-card  justify-content-center">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img class="action-card-img" src="static/img/{{ file.filename }}" alt="{{ file.Title }}">
+                                </div>
+                                <div class="action-card-title col-7 text-center">
+                                    <p class="action-card-title">{{ file.Title }}</p>
+                                </div>
+                                <p class="action-card-no col-1">{{loop.index}}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
