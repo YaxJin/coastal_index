@@ -72,7 +72,15 @@ hr{
    font-size: 20px;
    color: #303030;
 }
+.btn-round{
+   margin: 1.5vh 1.5vh;
+   height: 55px;
+   width: 55px;
+   border-radius: 100%;
+   border: 1px solid;
+}
 .btn-primary{
+   text-align: center;
    background-color: #014959;
    border-color:#014959;
    font-family: 'Noto Serif TC', serif;
