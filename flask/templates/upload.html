@@ -14,14 +14,20 @@
     <div class="container">
         <div class="card text-center">
             <p class="fs-1 card-title">AI 判斷海灘污染</p>
-            <!-- TODO upload form -->
             <div class="row">
-                <div class="d-grid  col-8"></div>
+                <div class="d-grid  col-8">
+                    <input class="form-control form-control-lg" id="formFile" type="file" accept=".jpg,.gif,.png">
+                </div>
                 <a  class="d-grid col-3 mx-auto" href="/result">
                     <button type="button" class="btn btn-primary btn-lg">
                         <i class="fa fa-upload"></i>上傳
                     </button>
                 </a>
+            </div>
+            <div class="row text-end">
+                <div class="col-8">
+                    <p>提示: 圖片檔案大小不可超過 5MB</p>
+                </div>
             </div>
         </div>
         <div class="position-absolute bottom-0 end-0">
