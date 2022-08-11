@@ -16,16 +16,46 @@
             <div class="card-title">
                 <p class="fs-1 card-title">AI 判斷海灘污染</p>
                 <hr>
-                <img src="/static/img/coastal.png" alt="costal">
+                <div class="row text-center">
+                    <div class="score fs-4 col-6">
+                        <p>海灘污染分數：
+                            {% if result.score > 85 %}
+                            <span class="text-danger fs-1">{{result.score}}</span>
+                            {% elif result.score > 55%}
+                            <span class="text-warning fs-1">{{result.score}}</span>
+                            {% else %}
+                            <span class="text-safe fs-1">{{result.score}}</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="score fs-4 col-6">
+                        <p>排名：
+                            {% if result.score > 85 %}
+                            <span class="text-danger fs-1">{{result.rank}}
+                                <span class="text fs-4">/{{result.total}}</span>
+                            </span>
+                            {% elif result.score > 55%}
+                            <span class="text-warning fs-1">{{result.rank}}
+                                <span class="text fs-4">/{{result.total}}</span>
+                            </span>
+                            {% else %}
+                            <span class="text-safe fs-1">{{result.rank}}
+                                <span class="text fs-4">/{{result.total}}</span>
+                            </span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
             </div>
+            <img src="/static/img/coastal.png" alt="costal">
         </div>
         <div class="row justify-content-center">
-            <a  class="d-grid col-4 mx-auto" href="/action">
+            <a  class="d-grid col-3 mx-auto" href="/action">
                 <button type="button" class="btn btn-primary btn-lg">
                     <i class="fa fa-hand-o-right"></i>實際行動
                 </button>
             </a>
-            <a  class="d-grid col-4 mx-auto" href="/upload">
+            <a  class="d-grid col-3 mx-auto" href="/upload">
                 <button type="button" class="btn btn-primary btn-lg">
                     <i class="fa fa-repeat" aria-hidden="true"></i>重新上傳
                 </button>

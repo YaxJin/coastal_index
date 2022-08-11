@@ -15,6 +15,8 @@ action_img = [
 	{'filename':"action2.png",'Title':"垃圾不落地"},
 	{'filename':"action3.png",'Title':"參與淨灘"}
 ]
+uploadScore = {"score":90,"rank":2,"total":22}
+
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -37,7 +39,7 @@ def upload():
 
 @app.route('/result')
 def result():
-	return render_template('upload_result.html')
+	return render_template('upload_result.html', result= uploadScore)
 
 @app.route('/action')
 def action():

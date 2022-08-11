@@ -79,8 +79,16 @@ hr{
    font-size: 29px;
 }
 .text{
-   font-size: 29px;
-   font-weight: 600;
+   color: white;
+}
+.text-danger{
+   color: #E74121;
+}
+.text-warning{
+   color: #FF9E29;
+}
+.text-safe{
+   color: #05bc2f;
 }
 /* @media (min-width: 600px) and (max-width: 1200px) {
    .text {
