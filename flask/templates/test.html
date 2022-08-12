@@ -10,6 +10,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
     </head>
 <body>
-    
+  {% if name == "" %}
+	<form method="post">
+		<!-- <input type="text" name="user"> -->
+    <input class="form-control form-control-lg" name="user" id="formFile" type="file" accept=".jpg,.gif,.png">
+		<input type="submit" name="send" value="送出">
+	</form>
+	{% else %}
+	<p>Hello,{{name}}</p>
+	{% endif %}
 </body>
 </html>

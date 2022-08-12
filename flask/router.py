@@ -1,5 +1,6 @@
+from crypt import methods
 from flask_bootstrap import Bootstrap5
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 
 app=Flask(__name__)
 
@@ -55,9 +56,13 @@ def error():
 
 
 ##### debug #####
-@app.route('/test')
+@app.route('/test',methods={'POST','GET'})
 def test():
-	return render_template('test.html')
+	if request.method =='POST':
+		if request.values['send']=='送出':
+			return render_template('test.html',name=request.values['user'])
+	return render_template('test.html',name="")
+
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0',port='8000',debug=True)
+	app.run(host='0.0.0.0',port='8080',debug=True)
