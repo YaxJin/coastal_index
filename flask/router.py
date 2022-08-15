@@ -7,15 +7,17 @@ bootstrap = Bootstrap5(app)
 
 classified_list = [
 	{'filename':"type1.png",'Title':"海岸遊憩與日常生活(Shoreline and recreational activities)"},
-	{'filename':"ocean.jpg",'Title':"海上活動與船隻(Ocean/Waterway Activities)"},
-	{'filename':"ocean.jpg",'Title':"抽煙相關行為(Smoking-related activities)"}
+	{'filename':"type2.png",'Title':"海上活動與船隻(Ocean/Waterway Activities)"},
+	{'filename':"type3.png",'Title':"抽煙相關行為(Smoking-related activities)"},
+	{'filename':"type4.png",'Title':"傾倒廢棄物(Dumping activities)"},
+	{'filename':"type5.png",'Title':"醫療/個人衛生用品(Medical/Personal hygiene)"}
 	]
 action_img = [
 	{'filename':"action1.png",'Title':"減少使用"},
 	{'filename':"action2.png",'Title':"垃圾不落地"},
 	{'filename':"action3.png",'Title':"參與淨灘"}
 ]
-uploadScore = {"score":90,"rank":2,"total":22}
+uploadScore = {"score":90, "rank":2, "total":22}
 
 @app.route('/')
 def index():
