@@ -1,10 +1,20 @@
 # from crypt import methods
 from flask_bootstrap import Bootstrap5
 from flask import Flask, render_template,request
+import os, pathlib
+from werkzeug.utils import secure_filename
 
 app=Flask(__name__)
 
 bootstrap = Bootstrap5(app)
+
+SRC_PATH =  pathlib.Path(__file__).parent.absolute()
+UPLOAD_FOLDER = os.path.join(SRC_PATH,  'static', 'uploads')
+
+if not os.path.isdir(UPLOAD_FOLDER):
+    os.mkdir(UPLOAD_FOLDER)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 classified_list = [
 	{'filename':"type1.png",'Title':"海岸遊憩與日常生活(Shoreline and recreational activities)"},
@@ -51,13 +61,12 @@ def action():
 def upload():
 	if request.method == 'POST':
 		if request.form.get('Upload') == 'Upload':
-			# print("Yeeee") # do something
-			f = request.form.get('file')
+			print(request.files)
+			f = request.files['file']
+			filename = secure_filename(f.filename)
+			f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 			l = int(request.form.get('location'))
 			desc = request.form.get('desc')
-			print(f)
-			print(location_list[l-1]["name"])
-			print(desc)
 		else:
 			print("Error") # unknown
 	elif request.method == 'GET':
