@@ -18,23 +18,25 @@ action_img = [
 	{'filename':"action2.png",'Title':"垃圾不落地"},
 	{'filename':"action3.png",'Title':"參與淨灘"}
 ]
+
 uploadScore = {"score":90, "rank":2, "total":22}
 
-@app.route('/')
-def index():
-	return render_template('index.html')
 
-@app.route('/intro')
-def intro():
-	return render_template('intro.html')
+@app.route('/')
+def rank():
+	return render_template('rank.html')
 
 @app.route('/classified')
 def classified():
 	return render_template('classified.html', classified_list = classified_list)
 
-@app.route('/rank')
-def rank():
-	return render_template('rank.html')
+@app.route('/intro')
+def intro():
+	return render_template('intro.html')
+
+@app.route('/action')
+def action():
+	return render_template('action.html', img = action_img)
 
 @app.route('/upload')
 def upload():
@@ -44,9 +46,6 @@ def upload():
 def result():
 	return render_template('upload_result.html', result= uploadScore)
 
-@app.route('/action')
-def action():
-	return render_template('action.html', img = action_img)
 
 @app.route('/404')
 def error():
