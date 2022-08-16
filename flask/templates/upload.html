@@ -17,13 +17,13 @@
                 <p class="fs-1 card-title">AI 判斷海灘污染</p>
                 <div class="row">
                     <div class="d-grid mb-3 col-lg-6">
-                        <input class="form-control form-control-lg" type="file" accept=".jpg,.gif,.png" required>
+                        <input class="form-control form-control-lg" type="file" name="file" accept=".jpg,.gif,.png" required>
                         <p class="text-end info-text">提示: 圖片檔案大小不可超過 5MB</p>
                     </div>
                     <div class="d-grid mb-3 col-lg-6">
                         <div class="input-group">
                             <label class="input-group-text" for="inputGroupSelect01">海灘地點</label>
-                            <select class="form-select form-select-lg" aria-label="location select" required>
+                            <select class="form-select form-select-lg" aria-label="location select" type="location" name="location" required>
                                 <option selected>---請選擇---</option>
                                 {% for index in location %}
                                     <option value="{{loop.index}}">{{index.name}}</option>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="mb-3">
                         <p for="exampleFormControlTextarea1" class="text-start info-text">更多描述:</p>
-                        <textarea class="form-control form-control-lg" id="exampleFormControlTextarea1" rows="5"></textarea>
+                        <textarea class="form-control form-control-lg" id="exampleFormControlTextarea1" rows="5", name="desc"></textarea>
                     </div>
                 </div>
                 <!-- <div class="col-lg-6 text-end">
@@ -42,7 +42,7 @@
                 <div class="col-6 d-md-none d-lg-block"></div> -->
                 <div class="d-md-none d-lg-block" style="margin: 2.5vh 0;"></div>
                 <div class="align-text-bottom">
-                    <button type="submit" class="btn btn-primary col-lg-3" onclick="">
+                    <button type="submit" name="Upload" class="btn btn-primary col-lg-3" onclick="" value="Upload">
                         <i class="fa fa-paper-plane-o"></i>送出
                     </button>
                 </div>

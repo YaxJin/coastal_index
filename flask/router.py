@@ -1,4 +1,4 @@
-from crypt import methods
+# from crypt import methods
 from flask_bootstrap import Bootstrap5
 from flask import Flask, render_template,request
 
@@ -47,9 +47,23 @@ def intro():
 def action():
 	return render_template('action.html', img = action_img)
 
-@app.route('/upload')
+@app.route('/upload', methods=['GET', 'POST'])
 def upload():
-	return render_template('upload.html',location = location_list)
+	if request.method == 'POST':
+		if request.form.get('Upload') == 'Upload':
+			# print("Yeeee") # do something
+			f = request.form.get('file')
+			l = int(request.form.get('location'))
+			desc = request.form.get('desc')
+			print(f)
+			print(location_list[l]["name"])
+			print(desc)
+		else:
+			print("Error") # unknown
+	elif request.method == 'GET':
+		return render_template('upload.html',location = location_list)
+
+	return render_template('upload_result.html', result= uploadScore)
 
 @app.route('/result')
 def result():
@@ -59,6 +73,7 @@ def result():
 @app.route('/404')
 def error():
 	return render_template('404.html')
+
 
 # @app.errorhandler(404)
 # def page_not_found(e):
