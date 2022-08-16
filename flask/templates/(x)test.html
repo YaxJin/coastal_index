@@ -11,13 +11,14 @@
     </head>
 <body>
   {% if name == "" %}
-	<form method="post">
+	<!-- <form method="post"> -->
 		<!-- <input type="text" name="user"> -->
     <input class="form-control form-control-lg" name="user" id="formFile" type="file" accept=".jpg,.gif,.png">
 		<input type="submit" name="send" value="送出">
-	</form>
+	<!-- </form> -->
 	{% else %}
 	<p>Hello,{{name}}</p>
 	{% endif %}
+  <input class="form-control form-control-lg" type="file" accept=".jpg,.gif,.png">
 </body>
 </html>

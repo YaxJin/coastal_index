@@ -99,8 +99,15 @@ hr{
 .text-safe{
    color: #05bc2f;
 }
-.form-control{
-   margin: 1.2vh;
+.input-group{
+   height: 38px;
+}
+.input-group-text{
+   font-size: 20px;
+}
+.info-text{
+   font-size: 20px;
+   margin: 0;
 }
 /* @media (min-width: 600px) and (max-width: 1200px) {
    .text {
