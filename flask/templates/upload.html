@@ -24,7 +24,7 @@
                         <div class="input-group">
                             <label class="input-group-text" for="inputGroupSelect01">海灘地點</label>
                             <select class="form-select form-select-lg" aria-label="location select" type="location" name="location" required>
-                                <option selected>---請選擇---</option>
+                                <option selected disabled value="">---請選擇---</option>
                                 {% for index in location %}
                                     <option value="{{loop.index}}">{{index.name}}</option>
                                 {% endfor %}
