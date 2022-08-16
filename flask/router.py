@@ -56,7 +56,7 @@ def upload():
 			l = int(request.form.get('location'))
 			desc = request.form.get('desc')
 			print(f)
-			print(location_list[l]["name"])
+			print(location_list[l-1]["name"])
 			print(desc)
 		else:
 			print("Error") # unknown
