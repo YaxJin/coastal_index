@@ -77,15 +77,9 @@ ranking = [{"location":"臺北市", "total_score": 0, "num_of_img": 0},
 		{"location":"連江縣", "total_score": 0, "num_of_img": 0}
 ]
 
-pickle = [
-	{"location":"臺北市","totalscore":90,"numofimg":1},
-	{"location":"臺北市","totalscore":250,"numofimg":3},
-	{"location":"臺北市","totalscore":100,"numofimg":2}
-]
-
 @app.route('/')
 def rank():
-	return render_template('rank.html', cityList = pickle)
+	return render_template('rank.html', cityList = ranking)
 
 @app.route('/classified')
 def classified():
@@ -138,7 +132,7 @@ def upload():
 
 			# Pickling the data
 			with open('data.pickle', 'wb') as file:
-				pickle.dump(allImg, file, protocol=pickle.HIGHEST_PROTOCOL)
+				pickle.dump(allImg, file)
 		else:
 			print("Error") # unknown
 	elif request.method == 'GET':

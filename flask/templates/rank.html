@@ -28,7 +28,11 @@
                                <a href="/#">
                                     <div class="rank-item row fs-3">
                                         <p class="col-8 text-start">{{ loop.index }} . {{ city.location }}</p>
-                                        <p class="col-4">{{ '%0.1f' | format((city.totalscore/city.numofimg)|float )}}</p>
+                                        {% if city.num_of_img > 0 %}
+                                            <p class="col-4">{{ '%0.1f' | format((city.total_score/city.num_of_img)|float )}}</p>
+                                        {% else %}
+                                            <p class="col-4">No data</p>
+                                        {% endif %}
                                     </div>
                                </a>
                                {% endfor %}
