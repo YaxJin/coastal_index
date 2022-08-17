@@ -38,11 +38,15 @@ action_img = [
 ]
 
 location_list = [
-	{"name":"臺北市"},{"name":"新北市"},{"name":"桃園市"},{"name":"臺中市"},{"name":"臺南市"},
-	{"name":"高雄市"},{"name":"宜蘭縣"},{"name":"新竹縣"},{"name":"苗栗縣"},{"name":"彰化縣"},{"name":"南投縣"},
-	{"name":"雲林縣"},{"name":"嘉義縣"},{"name":"屏東縣"},{"name":"花蓮縣"},{"name":"臺東縣"},{"name":"澎湖縣"},
-	{"name":"基隆市"},{"name":"新竹市"},{"name":"嘉義市"},{"name":"金門縣"},{"name":"連江縣"},{"name":"釣魚臺列嶼"},
-	{"name":"龜山島"},{"name":"東沙群島"},{"name":"南沙群島太平島"},{"name":"中洲礁"},{"name":"其他地區"}
+	{"name":"臺北市","countcode":"A"},{"name":"新北市","countcode":"F"},{"name":"基隆市","countcode":"C"},
+	{"name":"桃園市","countcode":"H"},{"name":"新竹縣","countcode":"J"},{"name":"新竹市","countcode":"O"},
+	{"name":"苗栗縣","countcode":"K"},{"name":"臺中市","countcode":"B"},{"name":"彰化縣","countcode":"N"},
+	{"name":"南投縣","countcode":"M"},{"name":"雲林縣","countcode":"P"},{"name":"嘉義市","countcode":"I"},
+	{"name":"嘉義縣","countcode":"Q"},{"name":"臺南市","countcode":"D"},{"name":"高雄市","countcode":"E"},
+	{"name":"屏東縣","countcode":"T"},{"name":"宜蘭縣","countcode":"G"},{"name":"花蓮縣","countcode":"U"},
+	{"name":"臺東縣","countcode":"V"},{"name":"澎湖縣","countcode":"X"},{"name":"金門縣","countcode":"W"},
+	{"name":"烈嶼","countcode":"W-1"},{"name":"連江縣","countcode":"Z"},{"name":"蘭嶼","countcode":"V-1"},
+	{"name":"綠島","countcode":"V-2"},{"name":"其他地區","countcode":"Y"}
 ]
 
 uploadScore = {"score":90, "rank":2, "total":22}
