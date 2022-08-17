@@ -4,7 +4,9 @@ from flask import Flask, render_template,request
 import os, pathlib
 from werkzeug.utils import secure_filename
 import time
-from coast_image.py import CoastImage
+from coast_image import CoastImage
+import CNN_classifier_API_tflite as classiflier
+import pickle
 
 app=Flask(__name__)
 
@@ -18,6 +20,8 @@ if not os.path.isdir(UPLOAD_FOLDER):
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+model_name = "model.tflite"
+loaded_model = classiflier.load_model(model_name)
 
 classified_list = [
 	{'filename':"type1.png",'Title':"海岸遊憩與日常生活(Shoreline and recreational activities)"},
@@ -43,7 +47,29 @@ location_list = [
 uploadScore = {"score":90, "rank":2, "total":22}
 
 allImg = []
-ranking = []
+ranking = [{"location":"臺北市", "total_score": 0, "num_of_img": 0},
+		{"location":"新北市", "total_score": 0, "num_of_img": 0},
+		{"location":"桃園市", "total_score": 0, "num_of_img": 0},
+		{"location":"臺中市", "total_score": 0, "num_of_img": 0},
+		{"location":"臺南市", "total_score": 0, "num_of_img": 0},
+		{"location":"高雄市", "total_score": 0, "num_of_img": 0},
+		{"location":"宜蘭縣", "total_score": 0, "num_of_img": 0},
+		{"location":"新竹縣", "total_score": 0, "num_of_img": 0},
+		{"location":"苗栗縣", "total_score": 0, "num_of_img": 0},
+		{"location":"彰化縣", "total_score": 0, "num_of_img": 0},
+		{"location":"南投縣", "total_score": 0, "num_of_img": 0},
+		{"location":"雲林縣", "total_score": 0, "num_of_img": 0},
+		{"location":"嘉義縣", "total_score": 0, "num_of_img": 0},
+		{"location":"屏東縣", "total_score": 0, "num_of_img": 0},
+		{"location":"花蓮縣", "total_score": 0, "num_of_img": 0},
+		{"location":"臺東縣", "total_score": 0, "num_of_img": 0},
+		{"location":"澎湖縣", "total_score": 0, "num_of_img": 0},
+		{"location":"基隆市", "total_score": 0, "num_of_img": 0},
+		{"location":"新竹市", "total_score": 0, "num_of_img": 0},
+		{"location":"嘉義市", "total_score": 0, "num_of_img": 0},
+		{"location":"金門縣", "total_score": 0, "num_of_img": 0},
+		{"location":"連江縣", "total_score": 0, "num_of_img": 0}
+]
 
 @app.route('/')
 def rank():
@@ -68,26 +94,49 @@ def upload():
 			# upload image files
 			f = request.files['file']
 			filename = secure_filename(f.filename)
-			f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+			f.save(save_path)
 
 			location = int(request.form.get('location')) # get location info
+			location = location_list[location-1]['name']
 			desc = request.form.get('desc') # get image description
 			times = time.localtime() # get struct_time
 			# time_string = time.strftime("%Y/%m/%d, %H:%M:%S", times)
 
 			# Construct new CoastImage obj
 			newImg = CoastImage(times, location, filename, None, desc=desc)
+			# run prediction
+			predictions, objs = classiflier.predict_trash(save_path, loaded_model)
+			# mask_prediction(imgPath, predictions)
+			score = classiflier.calculate_score(predictions)
+			result = {"score": score, "objects": objs}
+
+			# set prediction result 
+			newImg.setResult(result)
 			allImg.append(newImg)
+
+			# print result for debugging
+			# print(newImg.getTimeStamp())
+			# print(newImg.getLoaction()) 
+			# print(newImg.getImgName())
+			# print(newImg.getDesc())
+			# print(newImg.getResult())
+			print(allImg)
+			# print(ranking)
+
+			# Pickling the data
+			with open('data.pickle', 'wb') as file:
+				pickle.dump(allImg, file, protocol=pickle.HIGHEST_PROTOCOL)
 		else:
 			print("Error") # unknown
 	elif request.method == 'GET':
 		return render_template('upload.html', location = location_list)
 
-	return render_template('upload_result.html', result= uploadScore)
+	return render_template('upload_result.html', result = uploadScore)
 
-@app.route('/result')
+@app.route('/result') 
 def result():
-	return render_template('upload_result.html', result= uploadScore)
+	return render_template('upload_result.html', result = uploadScore)
 
 
 @app.route('/404')

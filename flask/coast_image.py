@@ -8,23 +8,23 @@ class CoastImage:
         self.__desc = desc
 
     def getTimeStamp(self):
-        return self.time
+        return self.__time
     
     def getLoaction(self):
-        return self.location
+        return self.__location
 
     def getImgName(self):
-        return self.imgName
+        return self.__imgName
     
     def getResult(self):
-        return self.result
+        return self.__result
 
     def getGPS(self):
-        return self.GPS
+        return self.__GPS
 
     def getDesc(self):
-        return self.desc
+        return self.__desc
 
-    
-
-    
+    def setResult(self, newResult):
+        self.__result = newResult
+  
