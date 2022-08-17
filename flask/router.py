@@ -3,18 +3,21 @@ from flask_bootstrap import Bootstrap5
 from flask import Flask, render_template,request
 import os, pathlib
 from werkzeug.utils import secure_filename
+import time
+from coast_image.py import CoastImage
 
 app=Flask(__name__)
 
 bootstrap = Bootstrap5(app)
 
 SRC_PATH =  pathlib.Path(__file__).parent.absolute()
-UPLOAD_FOLDER = os.path.join(SRC_PATH,  'static', 'uploads')
+UPLOAD_FOLDER = os.path.join(SRC_PATH, 'static', 'uploads')
 
 if not os.path.isdir(UPLOAD_FOLDER):
     os.mkdir(UPLOAD_FOLDER)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 classified_list = [
 	{'filename':"type1.png",'Title':"海岸遊憩與日常生活(Shoreline and recreational activities)"},
@@ -61,16 +64,20 @@ def action():
 def upload():
 	if request.method == 'POST':
 		if request.form.get('Upload') == 'Upload':
-			print(request.files)
+			# upload image files
 			f = request.files['file']
 			filename = secure_filename(f.filename)
 			f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			l = int(request.form.get('location'))
-			desc = request.form.get('desc')
+
+			l = int(request.form.get('location')) # get location info
+			desc = request.form.get('desc') # get image description
+			times = time.localtime() # get struct_time
+			# time_string = time.strftime("%Y/%m/%d, %H:%M:%S", times)
 		else:
 			print("Error") # unknown
+			return render_template('upload.html', location = location_list)
 	elif request.method == 'GET':
-		return render_template('upload.html',location = location_list)
+		return render_template('upload.html', location = location_list)
 
 	return render_template('upload_result.html', result= uploadScore)
 
