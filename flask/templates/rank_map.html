@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>你的海有多髒</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static',    filename='css/basic.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <!-- TODO D3.js -->
+                <img src="/static/img/taiwai-map.png" class="img-fluid" alt="Taiwai">
+            </div>
+            <div class="col-6 text-center">
+                <div class="row">
+                    <div class="col-12 card">
+                        <div class="card-title">
+                            <p class="fs-1 card-title">海灘污染物排名</p>
+                            <hr>
+                            <div class="rank">
+                               {% for city in cityList %}
+                               <!-- <a href="{{ url_for('location', _method='POST', city=loop.index ) }}"> -->
+                                    <div class="rank-item row fs-3">
+                                        <p class="col-8 text-start">{{ loop.index }} . {{ city.location }}</p>
+                                        <p class="col-4">{{ '%0.1f' | format((city.totalscore/city.numofimg)|float )}}</p>
+                                    </div>
+                               </a>
+                               {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <a  class="d-grid col-6 mx-auto" href="/upload">
+                        <button type="button" class="btn btn-primary btn-lg">
+                            <i class="fa fa-camera" aria-hidden="true"></i>AI判斷
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="position-absolute bottom-0 end-0">
+            <a href="/intro">
+                <button type="button" class="btn-round btn-primary">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                </button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

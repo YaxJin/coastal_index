@@ -1,4 +1,5 @@
 # from crypt import methods
+from copyreg import pickle
 from flask_bootstrap import Bootstrap5
 from flask import Flask, render_template,request
 import os, pathlib
@@ -46,6 +47,7 @@ location_list = [
 
 uploadScore = {"score":90, "rank":2, "total":22}
 
+
 allImg = []
 ranking = [{"location":"臺北市", "total_score": 0, "num_of_img": 0},
 		{"location":"新北市", "total_score": 0, "num_of_img": 0},
@@ -71,9 +73,15 @@ ranking = [{"location":"臺北市", "total_score": 0, "num_of_img": 0},
 		{"location":"連江縣", "total_score": 0, "num_of_img": 0}
 ]
 
+pickle = [
+	{"location":"臺北市","totalscore":90,"numofimg":1},
+	{"location":"臺北市","totalscore":250,"numofimg":3},
+	{"location":"臺北市","totalscore":100,"numofimg":2}
+]
+
 @app.route('/')
 def rank():
-	return render_template('rank.html')
+	return render_template('rank.html', cityList = pickle)
 
 @app.route('/classified')
 def classified():
@@ -134,7 +142,8 @@ def upload():
 
 	return render_template('upload_result.html', result = uploadScore)
 
-@app.route('/result') 
+
+@app.route('/result')
 def result():
 	return render_template('upload_result.html', result = uploadScore)
 
