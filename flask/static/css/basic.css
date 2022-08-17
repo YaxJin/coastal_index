@@ -20,10 +20,11 @@ hr{
    color: #F5E0E0;
 }
 
-.start-title{
+/* .start-title{
    font-weight: bold;
    letter-spacing: 0.2rem;
-}
+} */
+
 /* .title{
    margin: 2vh;
 } */
@@ -86,6 +87,12 @@ hr{
    border-color:#014959;
    font-family: 'Noto Serif TC', serif;
    font-size: 29px;
+}
+.rank-item{
+   border-radius: 10px;
+   border: 2px solid rgba(0,0,0,.125);
+   background-color: #17a2b85c;
+   margin: 0 2px;
 }
 .text{
    color: white;

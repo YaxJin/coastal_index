@@ -1,10 +1,11 @@
 # from crypt import methods
+from copyreg import pickle
 from flask_bootstrap import Bootstrap5
 from flask import Flask, render_template,request
 import os, pathlib
 from werkzeug.utils import secure_filename
 import time
-from coast_image.py import CoastImage
+from coast_image import CoastImage
 
 app=Flask(__name__)
 
@@ -42,12 +43,19 @@ location_list = [
 
 uploadScore = {"score":90, "rank":2, "total":22}
 
+
 allImg = []
 ranking = []
 
+pickle = [
+	{"location":"臺北市","totalscore":90,"numofimg":1},
+	{"location":"臺北市","totalscore":250,"numofimg":3},
+	{"location":"臺北市","totalscore":100,"numofimg":2}
+]
+
 @app.route('/')
 def rank():
-	return render_template('rank.html')
+	return render_template('rank.html', cityList = pickle)
 
 @app.route('/classified')
 def classified():
@@ -84,6 +92,12 @@ def upload():
 		return render_template('upload.html', location = location_list)
 
 	return render_template('upload_result.html', result= uploadScore)
+
+# @app.route('/location/<city>', methods=['GET', 'POST'])
+# def map(city):
+# 	if request.method == 'POST':
+# 		print(city)
+# 		return render_template('rank.html', cityList = pickle)
 
 @app.route('/result')
 def result():
