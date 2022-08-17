@@ -42,7 +42,8 @@ location_list = [
 
 uploadScore = {"score":90, "rank":2, "total":22}
 
-
+allImg = []
+ranking = []
 
 @app.route('/')
 def rank():
@@ -69,13 +70,16 @@ def upload():
 			filename = secure_filename(f.filename)
 			f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-			l = int(request.form.get('location')) # get location info
+			location = int(request.form.get('location')) # get location info
 			desc = request.form.get('desc') # get image description
 			times = time.localtime() # get struct_time
 			# time_string = time.strftime("%Y/%m/%d, %H:%M:%S", times)
+
+			# Construct new CoastImage obj
+			newImg = CoastImage(times, location, filename, None, desc=desc)
+			allImg.append(newImg)
 		else:
 			print("Error") # unknown
-			return render_template('upload.html', location = location_list)
 	elif request.method == 'GET':
 		return render_template('upload.html', location = location_list)
 
