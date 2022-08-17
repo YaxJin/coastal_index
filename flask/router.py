@@ -1,5 +1,4 @@
 # from crypt import methods
-from copyreg import pickle
 from flask_bootstrap import Bootstrap5
 from flask import Flask, render_template,request
 import os, pathlib
@@ -51,11 +50,21 @@ location_list = [
 
 uploadScore = {"score":90, "rank":2, "total":22}
 
+# load allImg pickle data if exist
+if os.path.exists('allImg.pickle'):
+	with open('allImg.pickle', 'rb') as file:
+		allImg = pickle.load(file)	
+else:
+	allImg = []
 
-allImg = []
-ranking = [{"location":"臺北市", "total_score": 100, "num_of_img": 1},
+# load ranking pickle data if exist
+if os.path.exists('ranking.pickle'):
+	with open('ranking.pickle', 'rb') as file:
+		ranking = pickle.load(file)	
+else:
+	ranking = [{"location":"臺北市", "total_score": 0, "num_of_img": 0},
 		{"location":"新北市", "total_score": 0, "num_of_img": 0},
-		{"location":"桃園市", "total_score": 50, "num_of_img": 1},
+		{"location":"桃園市", "total_score": 0, "num_of_img": 0},
 		{"location":"臺中市", "total_score": 0, "num_of_img": 0},
 		{"location":"臺南市", "total_score": 0, "num_of_img": 0},
 		{"location":"高雄市", "total_score": 0, "num_of_img": 0},
@@ -78,9 +87,8 @@ ranking = [{"location":"臺北市", "total_score": 100, "num_of_img": 1},
 		{"location":"綠島", "total_score": 0, "num_of_img": 0},
 		{"location":"蘭嶼", "total_score": 0, "num_of_img": 0},
 		{"location":"烈嶼", "total_score": 0, "num_of_img": 0}
-]
+	]
 
-ranking = sorted(ranking, key=lambda x : x['total_score']/x['num_of_img'] if x['num_of_img'] > 0 else x['total_score'], reverse=True)
 
 @app.route('/')
 def rank():
@@ -118,7 +126,6 @@ def upload():
 			newImg = CoastImage(times, location, filename, None, desc=desc)
 			# run prediction
 			predictions, objs = classiflier.predict_trash(save_path, loaded_model)
-			# mask_prediction(imgPath, predictions)
 			score = classiflier.calculate_score(predictions)
 			result = {"score": score, "objects": objs}
 
@@ -126,18 +133,29 @@ def upload():
 			newImg.setResult(result)
 			allImg.append(newImg)
 
+			# update ranking info
+			global ranking
+			for city in ranking:
+				if city['location'] == newImg.getLoaction():
+					city['total_score'] += newImg.getResult()['score']
+					city['num_of_img'] += 1
+			
+			ranking = sorted(ranking, key=lambda x : x['total_score']/x['num_of_img'] if x['num_of_img'] > 0 else x['total_score'], reverse=True)
 			# print result for debugging
 			# print(newImg.getTimeStamp())
 			# print(newImg.getLoaction()) 
 			# print(newImg.getImgName())
 			# print(newImg.getDesc())
 			# print(newImg.getResult())
-			print(allImg)
+			# print(allImg)
 			# print(ranking)
 
-			# Pickling the data
-			with open('data.pickle', 'wb') as file:
+			# Pickling allImg data
+			with open('allImg.pickle', 'wb') as file:
 				pickle.dump(allImg, file)
+			# Pickling ranking data
+			with open('ranking.pickle', 'wb') as file:
+				pickle.dump(ranking, file)
 		else:
 			print("Error") # unknown
 	elif request.method == 'GET':

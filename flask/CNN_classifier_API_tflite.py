@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 import tensorflow as tf
-
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -117,8 +116,8 @@ def calculate_score(predictions):
         print("No beach detected")
         return None
     else:
-        dirty_score = trash/total_beach
-        print("Dirty_Score: {:.1f}%".format(dirty_score*100))
+        dirty_score = (trash/total_beach)*100
+        print("Dirty_Score: {:.1f}%".format(dirty_score))
         return dirty_score
 
 
