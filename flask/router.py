@@ -53,9 +53,9 @@ uploadScore = {"score":90, "rank":2, "total":22}
 
 
 allImg = []
-ranking = [{"location":"臺北市", "total_score": 0, "num_of_img": 0},
+ranking = [{"location":"臺北市", "total_score": 100, "num_of_img": 1},
 		{"location":"新北市", "total_score": 0, "num_of_img": 0},
-		{"location":"桃園市", "total_score": 0, "num_of_img": 0},
+		{"location":"桃園市", "total_score": 50, "num_of_img": 1},
 		{"location":"臺中市", "total_score": 0, "num_of_img": 0},
 		{"location":"臺南市", "total_score": 0, "num_of_img": 0},
 		{"location":"高雄市", "total_score": 0, "num_of_img": 0},
@@ -79,6 +79,8 @@ ranking = [{"location":"臺北市", "total_score": 0, "num_of_img": 0},
 		{"location":"蘭嶼", "total_score": 0, "num_of_img": 0},
 		{"location":"烈嶼", "total_score": 0, "num_of_img": 0}
 ]
+
+ranking = sorted(ranking, key=lambda x : x['total_score']/x['num_of_img'] if x['num_of_img'] > 0 else x['total_score'], reverse=True)
 
 @app.route('/')
 def rank():
