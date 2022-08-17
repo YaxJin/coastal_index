@@ -74,7 +74,10 @@ ranking = [{"location":"臺北市", "total_score": 0, "num_of_img": 0},
 		{"location":"新竹市", "total_score": 0, "num_of_img": 0},
 		{"location":"嘉義市", "total_score": 0, "num_of_img": 0},
 		{"location":"金門縣", "total_score": 0, "num_of_img": 0},
-		{"location":"連江縣", "total_score": 0, "num_of_img": 0}
+		{"location":"連江縣", "total_score": 0, "num_of_img": 0},
+		{"location":"綠島", "total_score": 0, "num_of_img": 0},
+		{"location":"蘭嶼", "total_score": 0, "num_of_img": 0},
+		{"location":"烈嶼", "total_score": 0, "num_of_img": 0}
 ]
 
 @app.route('/')
