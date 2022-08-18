@@ -7,11 +7,7 @@ import os
 import cv2
 import PIL
 
-
 img_size = 64
-fpath = r"C:\Users\admin\Desktop\beachData2"
-imgFolder = r"C:\Users\admin\Desktop\beach1_1280"
-
 
 def load_model(model_name):
     interpreter = tf.lite.Interpreter(model_path=model_name)
@@ -21,7 +17,9 @@ def load_model(model_name):
 
 def predict_trash(img_path, model):
     # load image
-    test = tf.keras.preprocessing.image.load_img(img_path)
+    # test = tf.keras.preprocessing.image.load_img(img_path)
+    test = load_and_resize_img(img_path)
+    test = PIL.Image.fromarray(test, mode="RGB")
     s = test.size
     
     input_details = model.get_input_details()
@@ -63,9 +61,6 @@ def predict_trash(img_path, model):
             obj["prediction"] = prediction[0] # 
             classes.append(prediction[0])
             objects.append(obj)
-            
-    # print(classes)
-    # print(objects)
     
     return classes, objects
 
@@ -73,8 +68,9 @@ def predict_trash(img_path, model):
 # mask prediction result on image
 def mask_prediction(img_path, classes, border=-1, alpha=0.25, beta=0.75, img_size=64):
     c = 0
-    img = cv2.imread(img_path)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    # img = cv2.imread(img_path)
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = load_and_resize_img(img_path)
     
     height, weight, _ = img.shape
     
@@ -121,12 +117,28 @@ def calculate_score(predictions):
         return dirty_score
 
 
+def load_and_resize_img(imgFilepath, resize_length=1280): 
+    img = None
+    if os.path.exists(imgFilepath):
+        img = cv2.imread(imgFilepath)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        if(img.shape[1]>=img.shape[0]):
+            resize_height = int(img.shape[0]*resize_length/img.shape[1])
+            dsize = (resize_length, resize_height)
+            img = cv2.resize(img, dsize, interpolation = cv2.INTER_AREA)
+        else:
+            resize_width = int(img.shape[1]*resize_length/img.shape[0])
+            dsize = (resize_width, resize_length)
+            img = cv2.resize(img, dsize, interpolation = cv2.INTER_AREA)
+    return img
+
+
 # test
 if __name__ == "__main__":
-    model_name = "model.tflite"
+    model_name = r"C:\Users\admin\coastal_index\flask\model.tflite"
     loaded_model = load_model(model_name)
 
-    imgPath = r"C:\Users\admin\Desktop\beach1_1280\clean.jpg"
+    imgPath = r"C:\Users\admin\Desktop\beach1\dirty5.jpg"
     predictions, objs = predict_trash(imgPath, loaded_model)
     mask_prediction(imgPath, predictions)
     score = calculate_score(predictions)
