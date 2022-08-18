@@ -1,3 +1,4 @@
+
 body{
     height:100vh;
     background-image:url('/static/img/ocean.jpg');
@@ -33,15 +34,15 @@ hr{
    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
    /* -webkit-text-stroke: calc(0.05rem + 0.01vw) black; */
 }
-.container{
+/* .container{
    padding: 5vh;
-}
+} */
 .card{
-   margin: 5vh 0;
-   padding: 5vh;
-   height: 62vh;
+   /* margin: 5vh 0; */
+   /* padding: 5vh; */
+   /* height: 62vh; */
    background: rgba(159, 157, 158, 0.36);
-   border-radius: 20px;
+   /* border-radius: 20px; */
    overflow: auto;
 }
 
@@ -145,13 +146,38 @@ hr{
    margin-bottom: 2px;
 }
 
-/* @media (min-width: 600px) and (max-width: 1200px) {
-   .text {
-    font-size: calc(1.2rem + 0.1 * ((100vw - 600px) / 600));
+/* RWD */
+
+@media only screen and (min-width: 1200px) {
+   .container{
+      padding: 5vh;
    }
- }
- @media (min-width: 1200px) {
-   .text {
-      font-size: 1.3rem;
+   .card{
+      margin: 5vh 0;
+      padding: 5vh;
+      height: 62vh;
+      border-radius: 20px;
    }
- } */
+}
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+   .container{
+      padding: 10px;
+   }
+   .card{
+      margin: 10vh 0;
+      padding: 5vh;
+      height: 62vh;
+      border-radius: 20px;
+   }
+}
+@media only screen and (min-width: 0px) and (max-width: 767px){
+   .container{
+      padding: 5px;
+   }
+   .card{
+      margin-top: 5vh;
+      padding: 5vh;
+      height:80vh;
+      border-radius: 20px;
+   }
+}
