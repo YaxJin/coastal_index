@@ -180,4 +180,7 @@ hr{
       height:80vh;
       border-radius: 20px;
    }
+   body{
+      height:102vh;
+   }
 }
