@@ -12,55 +12,82 @@
     </head>
 <body>
     <div class="container">
-        <div class="card text-center">
-            <div class="card-title">
-                <p class="fs-1 card-title">AI 判斷海灘污染</p>
-                <hr>
-                <div class="row text-center">
-                    <div class="score fs-4 col-6">
-                        <p>海灘污染分數：
-                            {% if result.score > 85 %}
-                            <span class="text-danger fs-1">{{result.score}}</span>
-                            {% elif result.score > 55%}
-                            <span class="text-warning fs-1">{{result.score}}</span>
-                            {% else %}
-                            <span class="text-safe fs-1">{{result.score}}</span>
-                            {% endif %}
-                        </p>
+        <div class="row">
+            <div class="col-lg-6 d-md-none d-lg-block">
+                <div class="card-nbg row text-center">
+                    <div style="margin-top: 10vh;">
+                        <a  class="mx-auto align-middle" href="/">
+                            <button type="button" class="btn btn-info btn-lg">
+                                <i class="fa fa-list-ol" aria-hidden="true"></i>查看排名
+                            </button>
+                        </a>
                     </div>
-                    <div class="score fs-4 col-6">
-                        <p>排名：
-                            {% if result.score > 85 %}
-                            <span class="text-danger fs-1">{{result.rank}}
-                                <span class="text fs-4">/{{result.total}}</span>
-                            </span>
-                            {% elif result.score > 55%}
-                            <span class="text-warning fs-1">{{result.rank}}
-                                <span class="text fs-4">/{{result.total}}</span>
-                            </span>
-                            {% else %}
-                            <span class="text-safe fs-1">{{result.rank}}
-                                <span class="text fs-4">/{{result.total}}</span>
-                            </span>
-                            {% endif %}
-                        </p>
+                    <div style="margin-top: 5vh;">
+                        <a  class="mx-auto align-middle" href="/">
+                            <button type="button" class="btn btn-info btn-lg">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>更多資訊
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
-            <img src="/static/img/coastal.png" alt="costal">
+            <div class="col-lg-6">
+                <div class="card text-center">
+                    <div class="card-title">
+                        <p class="fs-1 card-title">AI 判斷海灘污染</p>
+                        <hr>
+                    </div>
+                    <div class="row text-center">
+                        <div class="score fs-4 col-6">
+                            <p>海灘污染分數：
+                                {% if result.score > 85 %}
+                                <span class="text-danger fs-1">{{result.score}}</span>
+                                {% elif result.score > 55%}
+                                <span class="text-warning fs-1">{{result.score}}</span>
+                                {% else %}
+                                <span class="text-safe fs-1">{{result.score}}</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="score fs-4 col-6">
+                            <p>排名：
+                                {% if result.score > 85 %}
+                                <span class="text-danger fs-1">{{result.rank}}
+                                    <span class="text fs-4">/{{result.total}}</span>
+                                </span>
+                                {% elif result.score > 55%}
+                                <span class="text-warning fs-1">{{result.rank}}
+                                    <span class="text fs-4">/{{result.total}}</span>
+                                </span>
+                                {% else %}
+                                <span class="text-safe fs-1">{{result.rank}}
+                                    <span class="text fs-4">/{{result.total}}</span>
+                                </span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <img src="/static/img/coastal.png" alt="costal">
+                    <p class="text-end image-info">
+                            <span>{{result.time}}</span>
+                            {% if result.location != "其他地區" %}
+                                <span> @ {{result.location}}</span>
+                            {% endif %}
+                    </p>
+                    <div style="margin-top: 40px;">
+                        <p class="text-start">{{result.desc}}</p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <a  class="d-grid col-5 mx-auto" href="/upload">
+                        <button type="button" class="btn btn-primary btn-lg">
+                            <i class="fa fa-repeat" aria-hidden="true"></i>重新上傳
+                        </button>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="row justify-content-center">
-            <a  class="d-grid col-3 mx-auto" href="/">
-                <button type="button" class="btn btn-primary btn-lg">
-                    <i class="fa fa-list-ol"></i>排行榜
-                </button>
-            </a>
-            <a  class="d-grid col-3 mx-auto" href="/upload">
-                <button type="button" class="btn btn-primary btn-lg">
-                    <i class="fa fa-repeat" aria-hidden="true"></i>重新上傳
-                </button>
-            </a>
-        </div>
+
         <div class="position-absolute bottom-0 end-0">
             <div class="d-md-none d-lg-block">
                 <!-- <a href="/action">
@@ -68,18 +95,25 @@
                         <i class="fa fa-hand-o-right" aria-hidden="true"></i>
                     </button>
                 </a> -->
-                <a href="/intro">
+                <!-- <a href="/">
+                    <button type="button" class="btn-round btn-primary">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </button>
+                </a> -->
+            </div>
+            <div class="d-none d-md-block d-lg-none">
+                <!-- <button type="button" class="btn-round btn-primary" onclick="">
+                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                </button> -->
+                <a href="/">
                     <button type="button" class="btn-round btn-primary">
                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                     </button>
                 </a>
             </div>
-            <div class="d-none d-md-block d-lg-none">
-                <button type="button" class="btn-round btn-primary" onclick="">
-                    <i class="fa fa-angle-up" aria-hidden="true"></i>
-                </button>
-            </div>
         </div>
+        
     </div>
+         
 </body>
 </html>
