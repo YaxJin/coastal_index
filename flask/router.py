@@ -110,17 +110,19 @@ def action():
 def upload():
 	if request.method == 'POST':
 		if request.form.get('Upload') == 'Upload':
+			# get struct_time
+			times = time.localtime()
+			time_string = time.strftime("%Y%m%d_%H%M%S", times)
+
 			# upload image files
 			f = request.files['file']
-			filename = secure_filename(f.filename)
+			filename = time_string + "_" + secure_filename(f.filename)
 			save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
 			f.save(save_path)
 
 			location = int(request.form.get('location')) # get location info
 			location = location_list[location-1]['name']
 			desc = request.form.get('desc') # get image description
-			times = time.localtime() # get struct_time
-			# time_string = time.strftime("%Y/%m/%d, %H:%M:%S", times)
 
 			# Construct new CoastImage obj
 			newImg = CoastImage(times, location, filename, None, desc=desc)
@@ -141,13 +143,14 @@ def upload():
 					city['num_of_img'] += 1
 			
 			ranking = sorted(ranking, key=lambda x : x['total_score']/x['num_of_img'] if x['num_of_img'] > 0 else x['total_score'], reverse=True)
+			
 			# print result for debugging
-			# print(newImg.getTimeStamp())
-			# print(newImg.getLoaction()) 
-			# print(newImg.getImgName())
-			# print(newImg.getDesc())
+			#for img in allImg:
+			#	print(img.getTimeStamp())
+			#	print(img.getLoaction()) 
+			#	print(img.getImgName())
+			#	print(img.getDesc())
 			# print(newImg.getResult())
-			# print(allImg)
 			# print(ranking)
 
 			# Pickling allImg data
