@@ -133,9 +133,13 @@ def upload():
 
 			# set prediction result 
 			newImg.setResult(result)
-			allImg.append(newImg)
 
-			# update ranking info
+			# store to allImg and sort by score
+			global allImg
+			allImg.append(newImg)
+			allImg = sorted(allImg, key=lambda x : x.getResult()["score"], reverse=True)
+
+			# update ranking info and sort by score
 			global ranking
 			for city in ranking:
 				if city['location'] == newImg.getLoaction():
@@ -149,8 +153,8 @@ def upload():
 			#	print(img.getTimeStamp())
 			#	print(img.getLoaction()) 
 			#	print(img.getImgName())
+			#	print(img.getResult()["score"])
 			#	print(img.getDesc())
-			# print(newImg.getResult())
 			# print(ranking)
 
 			# Pickling allImg data
@@ -164,6 +168,17 @@ def upload():
 	elif request.method == 'GET':
 		return render_template('upload.html', location = location_list)
 
+	# create uploadScore for result page
+	display_time = time.strftime("%Y/%m/%d", times)
+	uploadScore = {"score": newImg.getResult()["score"], 
+				"rank": allImg.index(newImg)+1, 
+				"total":len(allImg), 
+				"location": newImg.getLoaction(), 
+				"time": display_time, 
+				"desc": newImg.getDesc(), 
+				"img": newImg.getImgName()
+				}
+	
 	return render_template('upload_result.html', result = uploadScore)
 
 

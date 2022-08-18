@@ -41,11 +41,11 @@
                         <div class="score fs-4 col-6">
                             <p>海灘污染分數：
                                 {% if result.score > 85 %}
-                                <span class="text-danger fs-1">{{result.score}}</span>
+                                <span class="text-danger fs-1">{{ '%0.1f' | format(result.score|float )}}</span>
                                 {% elif result.score > 55%}
-                                <span class="text-warning fs-1">{{result.score}}</span>
+                                <span class="text-warning fs-1">{{ '%0.1f' | format(result.score|float )}}</span>
                                 {% else %}
-                                <span class="text-safe fs-1">{{result.score}}</span>
+                                <span class="text-safe fs-1">{{ '%0.1f' | format(result.score|float )}}</span>
                                 {% endif %}
                             </p>
                         </div>
@@ -67,7 +67,7 @@
                             </p>
                         </div>
                     </div>
-                    <img src="/static/img/coastal.png" alt="costal">
+                    <img src="static/uploads/{{ result.img }}" alt="costal">
                     <p class="text-end image-info">
                             <span>{{result.time}}</span>
                             {% if result.location != "其他地區" %}
