@@ -39,11 +39,20 @@ hr{
 .card{
    margin: 5vh 0;
    padding: 5vh;
-   height: 60vh;
+   height: 62vh;
    background: rgba(159, 157, 158, 0.36);
    border-radius: 20px;
    overflow: auto;
 }
+
+.card-nbg{
+   margin: 5vh 0;
+   padding: 5vh;
+   height: 62vh;
+   border-radius: 20px;
+   overflow: auto;
+}
+
 .action-card{
    margin: 2vh;
    background: rgba(217, 217, 217, 0.4);
@@ -66,6 +75,11 @@ hr{
 .action-card-img{
    height: 250px;
 }
+.image-info{
+   margin-top: -25px;
+   padding: 1px;
+   background-color: #26272765;
+}
 .carousel{
    margin: 5vh 0;
 }
@@ -87,6 +101,14 @@ hr{
    border-color:#014959;
    font-family: 'Noto Serif TC', serif;
    font-size: 29px;
+}
+.btn-info{
+   text-align: center;
+   background-color: #0149596a;
+   border-color:#014959;
+   font-family: 'Noto Serif TC', serif;
+   font-size: 29px;
+   color: #fff;
 }
 .rank-item{
    border-radius: 10px;
