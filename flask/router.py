@@ -48,7 +48,14 @@ location_list = [
 	{"name":"綠島","countcode":"V-2"},{"name":"其他地區","countcode":"Y"}
 ]
 
-uploadScore = {"score":90, "rank":2, "total":22}
+uploadScore = {"score": 0, 
+				"rank": 0, 
+				"total": 0, 
+				"location": "", 
+				"time": "", 
+				"desc": "", 
+				"img": ""
+				}
 
 # load allImg pickle data if exist
 if os.path.exists('allImg.pickle'):
@@ -120,12 +127,14 @@ def upload():
 			save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
 			f.save(save_path)
 
-			location = int(request.form.get('location')) # get location info
+			# get location info
+			location = int(request.form.get('location'))
 			location = location_list[location-1]['name']
-			desc = request.form.get('desc') # get image description
+			# get image description
+			desc = request.form.get('desc')
 
 			# Construct new CoastImage obj
-			newImg = CoastImage(times, location, filename, None, desc=desc)
+			newImg = CoastImage(times, location, filename, {"score": 0, "objects": None}, desc=desc)
 			# run prediction
 			predictions, objs = classiflier.predict_trash(save_path, loaded_model)
 			score = classiflier.calculate_score(predictions)
