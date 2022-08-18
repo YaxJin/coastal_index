@@ -8,10 +8,50 @@
         <link type="text/css" rel="stylesheet" href="{{ url_for('static',    filename='css/basic.css') }}">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 <body>
   <div class="container">
-    <div class="card">more ... </div>
+    <div class="card">
+        <div class="card-title text-center">
+            <p class="fs-1 card-title">更多資訊</p>
+            <hr>
+        </div>
+        <ol class="list-group">
+            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="fs-3">緣起</h5>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="fs-3">使用流程</h5>
+                </div>
+            </a>
+            <a href="/classified" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="fs-3">污染計算規則</h5>
+                </div>
+            </a>
+            <a href="/action" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="fs-3">實際行動</h5>
+                </div>
+            </a>
+            <a href="/classified" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="fs-3">廢棄物種類</h5>
+                </div>
+            </a>
+        </ol>
+    </div>
+    <div class="row justify-content-center">
+        <a  class="d-grid col-lg-3 mx-auto" href="/">
+            <button type="button" class="btn btn-primary btn-lg">
+                <i class="fa fa-home" aria-hidden="true"></i>回首頁
+            </button>
+        </a>
+    </div>
   </div>
 </body>
 </html>
