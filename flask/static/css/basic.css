@@ -20,7 +20,6 @@ hr{
    size: 3px;
    color: #F5E0E0;
 }
-
 /* .start-title{
    font-weight: bold;
    letter-spacing: 0.2rem;
@@ -169,6 +168,15 @@ hr{
       height: 62vh;
       border-radius: 20px;
    }
+   body{
+      height:102vh;
+   }
+   .carousel {
+      margin: 20vh 0;
+  }
+  .title{
+   margin-top: 20px;   
+   }
 }
 @media only screen and (min-width: 0px) and (max-width: 767px){
    .container{
@@ -181,6 +189,12 @@ hr{
       border-radius: 20px;
    }
    body{
-      height:102vh;
+      height:103vh;
+   }
+   .carousel {
+      margin: 20vh 0;
+  }
+  .title{
+   margin-top: 10px;   
    }
 }
