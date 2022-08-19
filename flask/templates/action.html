@@ -5,6 +5,7 @@
         <title>你的海有多髒</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link type="text/css" rel="stylesheet" href="{{ url_for('static',    filename='css/basic.css') }}">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
@@ -20,59 +21,38 @@
             <div class="row">
                 <div class="col">
                     {% for file in img %}
-                        {% if loop.index%2 != 0 %}
-                            <div class="action-card row justify-content-center">
-                                <p class="action-card-no col-1">{{loop.index}}</p>
-                                <div class="action-card-title col-7 text-center">
-                                    <p class="action-card-title">{{ file.Title }}</p>
-                                </div>
-                                <div class="col-4">
-                                    <img class="action-card-img" src="static/img/{{ file.filename }}" alt="{{ file.Title }}">
-                                </div>
+                        <div class="action-card row justify-content-center">
+                            <p class="action-card-no col-md-1">{{loop.index}}</p>
+                            <div class="action-card-title col-md-7 text-center">
+                                <p class="action-card-title">{{ file.Title }}</p>
                             </div>
-                        {% else %}
-                        <div class="action-card  justify-content-center">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img class="action-card-img" src="static/img/{{ file.filename }}" alt="{{ file.Title }}">
-                                </div>
-                                <div class="action-card-title col-7 text-center">
-                                    <p class="action-card-title">{{ file.Title }}</p>
-                                </div>
-                                <p class="action-card-no col-1">{{loop.index}}</p>
+                            <div class="col-md-3">
+                                <img class="action-card-img" src="static/img/{{ file.filename }}" alt="{{ file.Title }}">
                             </div>
                         </div>
-                        {% endif %}
-                    {% endfor %}
+                    {% endfor %} 
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <a  class="d-grid col-lg-3 mx-auto" href="/">
-                <button type="button" class="btn btn-primary btn-lg">
-                    <i class="fa fa-home" aria-hidden="true"></i>回首頁
-                </button>
+        <div class="row justify-content-center text-center">
+            <a  class="col-md-6 mx-auto d-none d-xl-block" href="/">
+              <button type="button" class="btn btn-primary btn-lg">
+                  <i class="fa fa-home" aria-hidden="true"></i>回首頁
+              </button>
             </a>
-        </div>
+            <a  class="d-grid col-md-6 col-8 mx-auto  d-block d-xl-none" style="margin-top: 10px;" href="/">
+              <button type="button" class="btn btn-primary btn-sm">
+                  <i class="fa fa-home" aria-hidden="true"></i>回首頁
+              </button>
+            </a>
+          </div>
 
         <div class="position-absolute bottom-0 end-0">
-            <!-- <div class="d-md-none d-lg-block"> -->
-                <!-- <a href="/">
-                    <button type="button" class="btn-round btn-primary">
-                        <i class="fa fa-list-ol" aria-hidden="true"></i>
-                    </button>
-                </a> -->
-                <a href="/more">
-                    <button type="button" class="btn-round btn-primary">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </button>
-                </a>
-            <!-- </div> -->
-            <!-- <div class="d-none d-md-block d-lg-none">
-                <button type="button" class="btn-round btn-primary" onclick="">
-                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+            <a href="/more">
+                <button type="button" class="btn-round btn-primary">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
                 </button>
-            </div> -->
+            </a>
         </div>
 
     </div>

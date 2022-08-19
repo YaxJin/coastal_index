@@ -20,7 +20,6 @@ hr{
    size: 3px;
    color: #F5E0E0;
 }
-
 /* .start-title{
    font-weight: bold;
    letter-spacing: 0.2rem;
@@ -74,7 +73,8 @@ hr{
    font-size: 5rem;
 }
 .action-card-img{
-   height: 250px;
+   height: 220px;
+   margin: 15px 0;
 }
 .image-info{
    margin-top: -25px;
@@ -169,6 +169,27 @@ hr{
       height: 62vh;
       border-radius: 20px;
    }
+   body{
+      height:102vh;
+   }
+   .carousel {
+      margin: 20vh 0;
+  }
+  .title{
+   margin-top: 20px;   
+   }
+   .action-card-title{
+      margin: 10px;
+      font-size: 3rem;
+   }
+   .action-card-img{
+      height: 115px;
+      margin: 10px 0;
+   }
+   .action-card-no{
+      height: 50px;
+      width: 50px;
+   }
 }
 @media only screen and (min-width: 0px) and (max-width: 767px){
    .container{
@@ -181,6 +202,23 @@ hr{
       border-radius: 20px;
    }
    body{
-      height:102vh;
+      height:103vh;
+   }
+   .carousel {
+      margin: 20vh 0;
+  }
+  .title{
+   margin-top: 10px;   
+   }
+   .action-card-title{
+      margin: 10px;
+      font-size: 2rem;
+   }
+   .action-card-img{
+      height: 120px;
+   }
+   .action-card-no{
+      height: 50px;
+      width: 50px;
    }
 }
