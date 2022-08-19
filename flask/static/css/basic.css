@@ -73,7 +73,7 @@ hr{
    font-size: 5rem;
 }
 .action-card-img{
-   height: 250px;
+   height: 220px;
 }
 .image-info{
    margin-top: -25px;
@@ -177,6 +177,17 @@ hr{
   .title{
    margin-top: 20px;   
    }
+   .action-card-title{
+      margin: 10px;
+      font-size: 3rem;
+   }
+   .action-card-img{
+      height: 115px;
+   }
+   .action-card-no{
+      height: 50px;
+      width: 50px;
+   }
 }
 @media only screen and (min-width: 0px) and (max-width: 767px){
    .container{
@@ -196,5 +207,16 @@ hr{
   }
   .title{
    margin-top: 10px;   
+   }
+   .action-card-title{
+      margin: 10px;
+      font-size: 2rem;
+   }
+   .action-card-img{
+      height: 120px;
+   }
+   .action-card-no{
+      height: 50px;
+      width: 50px;
    }
 }
