@@ -74,6 +74,7 @@ hr{
 }
 .action-card-img{
    height: 220px;
+   margin: 15px 0;
 }
 .image-info{
    margin-top: -25px;
@@ -183,6 +184,7 @@ hr{
    }
    .action-card-img{
       height: 115px;
+      margin: 10px 0;
    }
    .action-card-no{
       height: 50px;
