@@ -24,11 +24,11 @@ model_name = "model.tflite"
 loaded_model = classiflier.load_model(model_name)
 
 classified_list = [
-	{'filename':"type1.png",'Title':"海岸遊憩與日常生活(Shoreline and recreational activities)"},
-	{'filename':"type2.png",'Title':"海上活動與船隻(Ocean/Waterway Activities)"},
-	{'filename':"type3.png",'Title':"抽煙相關行為(Smoking-related activities)"},
-	{'filename':"type4.png",'Title':"傾倒廢棄物(Dumping activities)"},
-	{'filename':"type5.png",'Title':"醫療/個人衛生用品(Medical/Personal hygiene)"}
+	{'filename':"type1.png", 'Title':"海岸遊憩與日常生活", "Eng":"Shoreline and recreational activities"},
+	{'filename':"type2.png", 'Title':"海上活動與船隻", "Eng":"Ocean/Waterway Activities"},
+	{'filename':"type3.png", 'Title':"抽煙相關行為", "Eng":"Smoking-related activities"},
+	{'filename':"type4.png", 'Title':"傾倒廢棄物", "Eng":"Dumping activities"},
+	{'filename':"type5.png", 'Title':"醫療/個人衛生用品", "Eng":"Medical/Personal hygiene"}
 	]
 action_img = [
 	{'filename':"action1.png",'Title':"減少使用"},
