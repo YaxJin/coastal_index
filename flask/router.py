@@ -201,6 +201,11 @@ def error():
 	return render_template('404.html')
 
 
+@app.route('/more')
+def more():
+	return render_template('more.html')
+
+
 # @app.errorhandler(404)
 # def page_not_found(e):
 #     return render_template('404.html'), 404
