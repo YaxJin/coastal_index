@@ -70,12 +70,12 @@
                     </div>
                     <img src="static/uploads/{{ result.img }}" alt="costal">
                     <p class="text-end image-info">
-                            <span>{{result.time}}</span>
-                            {% if result.location != "其他地區" %}
-                                <span> @ {{result.location}}</span>
-                            {% endif %}
+                        <span>{{result.time}}</span>
+                        {% if result.location != "其他地區" %}
+                            <span> @ {{result.location}}</span>
+                        {% endif %}
                     </p>
-                        <p class="text-start">{{result.desc}}</p>
+                    <p class="text-start">{{result.desc}}</p>
 
                     <div class="row justify-content-center">
                         <a  class="d-grid col-md-6  mx-auto" href="/upload">
@@ -122,5 +122,3 @@
          
 </body>
 </html>
-
-<!-- uploadScore = {"score":90, "rank":2, "total":22, "location":"新北市", "time":"2022/08/15", "desc":"AAAAAaaaaaa"} -->
