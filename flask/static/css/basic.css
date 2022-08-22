@@ -52,7 +52,17 @@ hr{
    border-radius: 20px;
    overflow: auto;
 }
-
+.collapse-card{
+   height: 350px;
+   background-color: #0b111742;
+   overflow: auto;
+   margin: 0 5px;
+}
+.collapse-card-body{
+   margin: auto;
+   padding: 0;
+   width: 80%;
+}
 .action-card{
    margin: 2vh;
    background: rgba(217, 217, 217, 0.4);
@@ -75,6 +85,14 @@ hr{
 .action-card-img{
    height: 220px;
    margin: 15px 0;
+}
+.avatar-img{
+   border-radius: 50%;
+   width: 100px;
+   height: 100px;
+}
+.us-card{
+   margin-top: 10px;
 }
 .image-info{
    margin-top: -25px;
@@ -198,7 +216,7 @@ hr{
    .card{
       margin-top: 5vh;
       padding: 5vh;
-      height:80vh;
+      height:70vh;
       border-radius: 20px;
    }
    body{

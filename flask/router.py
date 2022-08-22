@@ -5,7 +5,7 @@ import os, pathlib
 from werkzeug.utils import secure_filename
 import time
 from coast_image import CoastImage
-import CNN_classifier_API_tflite as classiflier
+# import CNN_classifier_API_tflite as classiflier
 import pickle
 
 app=Flask(__name__)
@@ -21,7 +21,7 @@ if not os.path.isdir(UPLOAD_FOLDER):
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 model_name = "model.tflite"
-loaded_model = classiflier.load_model(model_name)
+# loaded_model = classiflier.load_model(model_name)
 
 classified_list = [
 	{'filename':"type1.png", 'Title':"海岸遊憩與日常生活", "Eng":"Shoreline and recreational activities"},
@@ -47,6 +47,7 @@ location_list = [
 	{"name":"烈嶼","countcode":"W-1"},{"name":"連江縣","countcode":"Z"},{"name":"蘭嶼","countcode":"V-1"},
 	{"name":"綠島","countcode":"V-2"},{"name":"其他地區","countcode":"Y"}
 ]
+
 
 uploadScore = {"score": 0, 
 				"rank": 0, 
@@ -105,9 +106,9 @@ def rank():
 def classified():
 	return render_template('classified.html', classified_list = classified_list)
 
-@app.route('/intro')
-def intro():
-	return render_template('intro.html')
+# @app.route('/intro')
+# def intro():
+# 	return render_template('intro.html')
 
 @app.route('/action')
 def action():
@@ -136,8 +137,8 @@ def upload():
 			# Construct new CoastImage obj
 			newImg = CoastImage(times, location, filename, {"score": 0, "objects": None}, desc=desc)
 			# run prediction
-			predictions, objs = classiflier.predict_trash(save_path, loaded_model)
-			score = classiflier.calculate_score(predictions)
+			# predictions, objs = classiflier.predict_trash(save_path, loaded_model)
+			# score = classiflier.calculate_score(predictions)
 			result = {"score": score, "objects": objs}
 
 			# set prediction result 
@@ -195,6 +196,10 @@ def upload():
 def result():
 	return render_template('upload_result.html', result = uploadScore)
 
+@app.route('/about')
+def about():
+	return render_template('aboutUS.html')
+
 
 @app.route('/404')
 def error():
@@ -212,9 +217,11 @@ def more():
 
 
 ##### debug #####
-@app.route('/test',methods={'POST','GET'})
+
+@app.route('/test')
 def test():
 	return render_template('(x)test.html')
+
 
 
 if __name__ == '__main__':
