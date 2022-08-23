@@ -87,7 +87,7 @@ hr{
    margin: 15px 0;
 }
 .avatar-img{
-   border-radius: 50%;
+   border-radius: 20px;
    width: 100px;
    height: 100px;
 }
