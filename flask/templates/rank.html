@@ -60,20 +60,22 @@
                                     </a>
                                     <div class="collapse" data-bs-parent="#accordion" data-bs-toggle="collapse" id="rank_img{{loop.index}}">
                                         <div class="collapse-card text-center">
-                                       {% for n in range(2) %}
-                                        <div class="row collapse-card-body">
-                                            <div class="score fs-4 col-md-6">
-                                                <p>污染排名：1</p>
-                                            </div>
-                                            <div class="score fs-4 col-md-6">
-                                                <p>污染分數：60</p>
-                                            </div>
-                                            <img src="/static/uploads/20220818_164944_clean.jpg" style="padding: 0;" alt="filename">
-                                            <p class="text-end image-info">2022/08/15</p>
-                                            <p class="col-12">desc.....</p>
-                                            <hr>
-                                        </div>
-                                        {% endfor %}
+                                        {% for img in imgList %}
+                                                {% if img.getLoaction() == city.location %}
+                                                    <div class="row collapse-card-body">
+                                                        <div class="score fs-4 col-md-6">
+                                                            <p>污染排名：{{loop.index0 + 1}}</p>
+                                                        </div>
+                                                        <div class="score fs-4 col-md-6">
+                                                            <p>污染分數：{{ '%0.1f' | format(img.getResult()['score'] |float )}}</p>
+                                                        </div>
+                                                        <img src="static/uploads/{{ img.getImgName() }}" style="padding: 0;" alt="{{ img.getImgName() }}">
+                                                        <p class="text-end image-info"> {{ '%04d/%02d/%02d' | format(img.getTimeStamp().tm_year, img.getTimeStamp().tm_mon, img.getTimeStamp().tm_mday) }}</p>
+                                                        <p class="col-12">{{img.getDesc()}}</p>
+                                                        <hr>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
                                   </div>
