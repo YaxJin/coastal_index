@@ -41,7 +41,7 @@ const TaiwanMap = new Vue({
           .attr('viewBox', `0 0 ${width} ${height}`);
       
       // 讓d3抓GeoJSON檔，並寫入path的路徑
-      var url = 'static/dist1/taiwan.geojson';
+      var url = 'static/src/taiwan.geojson';
       await d3.json(url, (error, geometry) => {
         if (error) throw error;
 
