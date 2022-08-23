@@ -6,11 +6,11 @@ const TaiwanMap = new Vue({
   },
   methods: {
     async getTaiwanMap() {
-      // const width = (this.$refs.map.offsetWidth).toFixed(),
-          // height = (this.$refs.map.offsetHeight).toFixed();
+      const width = (this.$refs.map.offsetWidth).toFixed(),
+          height = (this.$refs.map.offsetHeight).toFixed();
 
-      const width = 600,
-        height = 600;
+      // const width = 600,
+      //   height = 600;
 
       // 判斷螢幕寬度，給不同放大值
       let mercatorScale, w = window.screen.width;
@@ -41,7 +41,7 @@ const TaiwanMap = new Vue({
           .attr('viewBox', `0 0 ${width} ${height}`);
       
       // 讓d3抓GeoJSON檔，並寫入path的路徑
-      var url = 'static/dist/taiwan.geojson';
+      var url = 'static/src/taiwan.geojson';
       await d3.json(url, (error, geometry) => {
         if (error) throw error;
 
