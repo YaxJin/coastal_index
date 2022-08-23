@@ -100,7 +100,7 @@ else:
 
 @app.route('/')
 def rank():
-	return render_template('rank.html', cityList = ranking)
+	return render_template('rank.html', cityList = ranking, imgList=allImg)
 
 @app.route('/classified')
 def classified():
