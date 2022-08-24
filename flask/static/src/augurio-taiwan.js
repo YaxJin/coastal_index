@@ -65,12 +65,19 @@ const TaiwanMap = new Vue({
             // var Obj = document.getElementById('modal-body')
             var str = document.getElementById('no-img').innerHTML
             var num = parseInt(document.getElementById('num').innerHTML)+1
+            var tag = 0
             // console.log(num)
             // var str = document.getElementById('img').innerHTML
             for (i = 1; i < num; i++) {
               // console.log(document.getElementById('name'+step).innerHTML)
               if(document.getElementById('name'+i).innerHTML == cityName){
-                str = document.getElementById('img'+i).innerHTML
+                if(tag != 0){
+                  str = str + document.getElementById('img'+i).innerHTML
+                }
+                else{
+                  str = document.getElementById('img'+i).innerHTML
+                }
+                tag++
               }
             }
             
