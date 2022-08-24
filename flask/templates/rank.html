@@ -78,7 +78,7 @@
                                                         <p>污染排名：{{loop.index0 + 1}}</p>
                                                     </div>
                                                     <div class="score fs-4 col-md-6">
-                                                        <p>污染分數：{{ '%0.1f' | format(img.getResult()['score'] |float )}}</p>
+                                                        <p>污染分數：{{ '%0.1f' | format(img.getResult()['score']*img.getCredibility() |float )}}</p>
                                                     </div>
                                                     <img src="static/uploads/{{ img.getImgName() }}" style="padding: 0;" alt="{{ img.getImgName() }}">
                                                     <p class="text-end image-info"> {{ '%04d/%02d/%02d' | format(img.getTimeStamp().tm_year, img.getTimeStamp().tm_mon, img.getTimeStamp().tm_mday) }}</p>
