@@ -8,7 +8,6 @@ from coast_image import CoastImage
 import CNN_classifier_API_tflite as classiflier # comment out if no tensorflow
 import pickle
 from math import exp
-from datetime import datetime, timedelta
 
 app=Flask(__name__)
 
@@ -266,18 +265,6 @@ def test():
 
 
 if __name__ == '__main__':
+	app.jinja_env.auto_reload = True
+	app.config['TEMPLATES_AUTO_RELOAD'] = True
 	app.run(host='0.0.0.0',port='8080',debug=True)
-	# when_to_run = datetime.now()
-	# if datetime.now() > when_to_run:
-	# 	# First run is tomorrow
-	# 	when_to_run += timedelta(seconds=5)
-	# time_to_wait = when_to_run - datetime.now()
-
-	# while True:
-	# 	time.sleep(time_to_wait.seconds)
-
-	# 	# run your stuff here
-	# 	refresh_data()
-
-	# 	when_to_run += timedelta(seconds=5)
-	# 	time_to_wait = when_to_run - datetime.now()
