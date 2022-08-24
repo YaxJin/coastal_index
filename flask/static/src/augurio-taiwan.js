@@ -1,8 +1,7 @@
 const TaiwanMap = new Vue({
   el: '#app',
   data: {
-    h1: '海灘污染物排名',
-    h2: '縣市英文'
+    city: "尚無圖片"
   },
   methods: {
     async getTaiwanMap() {
@@ -60,24 +59,23 @@ const TaiwanMap = new Vue({
           .on('click', d => {
             myModal.show()
             document.getElementById('modalLabel').innerHTML = d.properties.COUNTYNAME;
-            // this.h1 = d.properties.COUNTYNAME; // 換中文名
-            // this.h2 = d.properties.COUNTYENG; // 換英文名
-            // 有 .active 存在，就移除 .active
+            cityName = d.properties.COUNTYNAME;
+            // console.log(cityName)
 
-            // console.log(document.getElementById('img'))
-            var Obj = document.getElementById('modal-body')
-            var str = document.getElementById('img').innerHTML
-            // document.getElementById('modal-body').innerHTML = document.getElementById('img');
-            if(Obj.outerHTML) { //if outerHTML is supported
-              Obj.outerHTML=str; ///it's simple replacement of whole element with contents of str var
+            // var Obj = document.getElementById('modal-body')
+            var str = document.getElementById('no-img').innerHTML
+            var num = document.getElementById('num').innerHTML
+            // console.log(num)
+            // var str = document.getElementById('img').innerHTML
+            for (i = 1; i < 4; i++) {
+              // console.log(document.getElementById('name'+step).innerHTML)
+              if(document.getElementById('name'+i).innerHTML == cityName){
+                str = document.getElementById('img'+i).innerHTML
+              }
             }
-            else { //if outerHTML is not supported, there is a weird but crossbrowsered trick
-                var tmpObj=document.createElement("div");
-                tmpObj.innerHTML='<!--THIS DATA SHOULD BE REPLACED-->';
-                ObjParent=Obj.parentNode;
-                ObjParent.replaceChild(tmpObj,Obj);
-                ObjParent.innerHTML=ObjParent.innerHTML.replace('<div><!--THIS DATA SHOULD BE REPLACED--></div>',str);
-            }
+            
+            document.getElementById('modal-body').innerHTML = str
+
 
           });
       });

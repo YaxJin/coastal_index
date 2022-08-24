@@ -10,8 +10,9 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="shortcut icon" href="https://letswritetw.github.io/letswritetw/dist/img/logo_512.png"/>
+        <!-- <link rel="shortcut icon" href="https://letswritetw.github.io/letswritetw/dist/img/logo_512.png"/> -->
         <link type="text/css" rel="stylesheet" href="{{ url_for('static',    filename='src/augurio-taiwan.min.css') }}">
+        
     </head>
 <body>
     <div id="app" class="container">
@@ -22,16 +23,14 @@
                         <svg id="svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"></svg>
                     </div>
                 </div>
-                <div class="modal fade overflow-auto" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header text-center">
+                      <div class="modal-content  overflow-auto">
+                        <div class="modal-header" style="margin: 0 20px;">
                           <p class="modal-title fs-1" id="modalLabel"></p>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="modal-body">
-                          <p>尚無圖片</p>
-                        </div>
+                        <div class="modal-body" id="modal-body"></div>
                       </div>
                     </div>
                 </div>
@@ -70,7 +69,7 @@
                                       </div>
                                     </a>
                                     <div class="collapse" data-bs-parent="#accordion" data-bs-toggle="collapse" id="rank_img{{loop.index}}">
-                                        <div class="collapse-card text-center" id="img">
+                                        <div class="collapse-card">
                                         {% for img in imgList %}
                                             {% if img.getLoaction() == city.location %}
                                                 <div class="row collapse-card-body">
@@ -89,8 +88,34 @@
                                         {% endfor %}
                                         </div>
                                     </div>
+                                        {% for img in imgList %}
+                                        <div class="d-none d-xl-block" id="img">
+                                        <p class="d-none" id="name{{loop.index}}">{{ img.getLoaction() }}</p>
+                                        <p class="d-none" id="num">{{loop.index}}</p>
+                                            <div id="img{{loop.index}}">
+                                                <div class="row">
+                                                    <div class="score fs-4 col-md-6">
+                                                        <p>污染排名：{{loop.index0 + 1}}</p>
+                                                    </div>
+                                                    <div class="score fs-4 col-md-6">
+                                                        <p>污染分數：{{ '%0.1f' | format(img.getResult()['score'] |float )}}</p>
+                                                    </div>
+                                                    <img src="static/uploads/{{ img.getImgName() }}" style="padding: 0;" alt="{{ img.getImgName() }}">
+                                                    <p class="text-end image-info"> {{ '%04d/%02d/%02d' | format(img.getTimeStamp().tm_year, img.getTimeStamp().tm_mon, img.getTimeStamp().tm_mday) }}</p>
+                                                    <p class="col-12">{{img.getDesc()}}</p>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="d-none" id="no-img">
+                                            <div class="modal-body row">
+                                                <p class="text fs-3">尚無圖片</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
                                   </div>
-                                {% endfor %}
                             </div>
                         </div>
                     </div>
