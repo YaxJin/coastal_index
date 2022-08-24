@@ -72,6 +72,7 @@
                                         <div class="collapse-card">
                                         {% for img in imgList %}
                                             {% if img.getLoaction() == city.location %}
+                                            {% if city.num_of_img > 0 %}
                                                 <div class="row collapse-card-body">
                                                     <div class="score fs-4 col-md-6">
                                                         <p>污染排名：{{loop.index0 + 1}}</p>
@@ -85,13 +86,15 @@
                                                     <hr>
                                                 </div>
                                             {% endif %}
+                                            {% endif %}
                                         {% endfor %}
                                         </div>
                                     </div>
+                                    
+                                    <p class="d-none" id="num">{{imgList|length}}</p>
                                         {% for img in imgList %}
                                         <div class="d-none d-xl-block" id="img">
                                         <p class="d-none" id="name{{loop.index}}">{{ img.getLoaction() }}</p>
-                                        <p class="d-none" id="num">{{loop.index}}</p>
                                             <div id="img{{loop.index}}">
                                                 <div class="row">
                                                     <div class="score fs-4 col-md-6">
