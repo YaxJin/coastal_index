@@ -1,7 +1,7 @@
 const TaiwanMap = new Vue({
   el: '#app',
   data: {
-    h1: '縣市中文',
+    h1: '海灘污染物排名',
     h2: '縣市英文'
   },
   methods: {
@@ -39,9 +39,12 @@ const TaiwanMap = new Vue({
           .attr('width', width)
           .attr('height', height)
           .attr('viewBox', `0 0 ${width} ${height}`);
-      
+
       // 讓d3抓GeoJSON檔，並寫入path的路徑
       var url = 'static/src/taiwan.geojson';
+      var myModal = new bootstrap.Modal(document.getElementById('modal'), {
+        keyboard: false
+      })
       await d3.json(url, (error, geometry) => {
         if (error) throw error;
 
@@ -55,14 +58,27 @@ const TaiwanMap = new Vue({
             id: (d) => 'city' + d.properties.COUNTYCODE
           })
           .on('click', d => {
-            this.h1 = d.properties.COUNTYNAME; // 換中文名
-            this.h2 = d.properties.COUNTYENG; // 換英文名
+            myModal.show()
+            document.getElementById('modalLabel').innerHTML = d.properties.COUNTYNAME;
+            // this.h1 = d.properties.COUNTYNAME; // 換中文名
+            // this.h2 = d.properties.COUNTYENG; // 換英文名
             // 有 .active 存在，就移除 .active
-            if(document.querySelector('.active')) {
-              document.querySelector('.active').classList.remove('active');
+
+            // console.log(document.getElementById('img'))
+            var Obj = document.getElementById('modal-body')
+            var str = document.getElementById('img').innerHTML
+            // document.getElementById('modal-body').innerHTML = document.getElementById('img');
+            if(Obj.outerHTML) { //if outerHTML is supported
+              Obj.outerHTML=str; ///it's simple replacement of whole element with contents of str var
             }
-            // 被點擊的縣市加上 .active
-            document.getElementById('city' + d.properties.COUNTYCODE).classList.add('active');
+            else { //if outerHTML is not supported, there is a weird but crossbrowsered trick
+                var tmpObj=document.createElement("div");
+                tmpObj.innerHTML='<!--THIS DATA SHOULD BE REPLACED-->';
+                ObjParent=Obj.parentNode;
+                ObjParent.replaceChild(tmpObj,Obj);
+                ObjParent.innerHTML=ObjParent.innerHTML.replace('<div><!--THIS DATA SHOULD BE REPLACED--></div>',str);
+            }
+
           });
       });
       return svg;
