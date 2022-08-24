@@ -250,6 +250,18 @@ def error():
 def more():
 	return render_template('more.html')
 
+@app.route('/intro')
+def intro():
+	return render_template('intro.html')
+
+@app.route('/process')
+def process():
+	return render_template('process.html')
+
+@app.route('/rule')
+def rule():
+	return render_template('rule.html')
+
 
 # @app.errorhandler(404)
 # def page_not_found(e):
