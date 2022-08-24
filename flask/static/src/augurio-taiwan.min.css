@@ -6,6 +6,12 @@
 .taiwan-map,.shop-list{width:100%;height:100%}
 #map{display:-webkit-box;display:flex;-webkit-box-pack:center;justify-content:center;-webkit-box-align:center;align-items:center;width:100%;height:100%}
 #map svg{max-height:80vh}
+#map path#cityM:hover{
+    pointer-events: none;
+    transform: none;
+    fill:rgba(159, 157, 158, 0.36);
+    stroke:#FFF
+}
 #map path{fill:rgba(159, 157, 158, 0.36);stroke:#FFF;cursor:pointer;-webkit-transition:fill .2s ease, stroke .2s ease, -webkit-transform .2s ease;transition:fill .2s ease, stroke .2s ease, -webkit-transform .2s ease;transition:fill .2s ease, stroke .2s ease, transform .2s ease;transition:fill .2s ease, stroke .2s ease, transform .2s ease, -webkit-transform .2s ease}
 #map path:hover,
 #map path.active{fill:rgba(61, 63, 53, 0.5);stroke:#cadbe0;-webkit-transform:translateY(-5px);transform:translateY(-5px)}

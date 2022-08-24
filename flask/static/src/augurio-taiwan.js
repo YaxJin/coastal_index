@@ -1,8 +1,5 @@
 const TaiwanMap = new Vue({
   el: '#app',
-  data: {
-    city: "尚無圖片"
-  },
   methods: {
     async getTaiwanMap() {
       const width = (this.$refs.map.offsetWidth).toFixed(),
@@ -57,7 +54,9 @@ const TaiwanMap = new Vue({
             id: (d) => 'city' + d.properties.COUNTYCODE
           })
           .on('click', d => {
-            myModal.show()
+            if(d.properties.COUNTYCODE != 'M'){
+              myModal.show()
+            }
             document.getElementById('modalLabel').innerHTML = d.properties.COUNTYNAME;
             cityName = d.properties.COUNTYNAME;
             // console.log(cityName)
