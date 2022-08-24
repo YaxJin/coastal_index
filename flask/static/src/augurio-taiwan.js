@@ -1,7 +1,7 @@
 const TaiwanMap = new Vue({
   el: '#app',
   data: {
-    h1: '縣市中文',
+    h1: '海灘污染物排名',
     h2: '縣市英文'
   },
   methods: {
@@ -42,6 +42,10 @@ const TaiwanMap = new Vue({
       
       // 讓d3抓GeoJSON檔，並寫入path的路徑
       var url = 'static/src/taiwan.geojson';
+      // var myModal = document.getElementById('exampleModal');
+      var myModal = new bootstrap.Modal(document.getElementById('modal'), {
+        keyboard: false
+      })
       await d3.json(url, (error, geometry) => {
         if (error) throw error;
 
@@ -55,9 +59,15 @@ const TaiwanMap = new Vue({
             id: (d) => 'city' + d.properties.COUNTYCODE
           })
           .on('click', d => {
-            this.h1 = d.properties.COUNTYNAME; // 換中文名
-            this.h2 = d.properties.COUNTYENG; // 換英文名
+            myModal.show()
+            document.getElementById('modalLabel').innerHTML = d.properties.COUNTYNAME;
+            // this.h1 = d.properties.COUNTYNAME; // 換中文名
+            // this.h2 = d.properties.COUNTYENG; // 換英文名
             // 有 .active 存在，就移除 .active
+            console.log(myModal)
+            if(myModal.hide()){
+              document.querySelector('.active').classList.remove('active');
+            }
             if(document.querySelector('.active')) {
               document.querySelector('.active').classList.remove('active');
             }
