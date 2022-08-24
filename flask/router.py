@@ -39,14 +39,14 @@ action_img = [
 ]
 
 location_list = [
-	{"name":"臺北市","countcode":"A"},{"name":"新北市","countcode":"F"},{"name":"基隆市","countcode":"C"},
+	{"name":"臺北","countcode":"A"},{"name":"基隆市","countcode":"C"},
 	{"name":"桃園市","countcode":"H"},{"name":"新竹縣","countcode":"J"},{"name":"新竹市","countcode":"O"},
 	{"name":"苗栗縣","countcode":"K"},{"name":"臺中市","countcode":"B"},{"name":"彰化縣","countcode":"N"},
-	{"name":"南投縣","countcode":"M"},{"name":"雲林縣","countcode":"P"},{"name":"嘉義市","countcode":"I"},
-	{"name":"嘉義縣","countcode":"Q"},{"name":"臺南市","countcode":"D"},{"name":"高雄市","countcode":"E"},
+	{"name":"雲林縣","countcode":"P"},
+	{"name":"嘉義","countcode":"Q"},{"name":"臺南市","countcode":"D"},{"name":"高雄市","countcode":"E"},
 	{"name":"屏東縣","countcode":"T"},{"name":"宜蘭縣","countcode":"G"},{"name":"花蓮縣","countcode":"U"},
 	{"name":"臺東縣","countcode":"V"},{"name":"澎湖縣","countcode":"X"},{"name":"金門縣","countcode":"W"},
-	{"name":"烈嶼","countcode":"W-1"},{"name":"連江縣","countcode":"Z"},{"name":"蘭嶼","countcode":"V-1"},
+	{"name":"連江縣","countcode":"Z"},{"name":"蘭嶼","countcode":"V-1"},
 	{"name":"綠島","countcode":"V-2"},{"name":"其他地區","countcode":"Y"}
 ]
 
@@ -71,8 +71,8 @@ if os.path.exists('ranking.pickle'):
 	with open('ranking.pickle', 'rb') as file:
 		ranking = pickle.load(file)	
 else:
-	ranking = [{"location":"臺北市", "total_score": 0, "num_of_img": 0},
-		{"location":"新北市", "total_score": 0, "num_of_img": 0},
+	ranking = [{"location":"臺北", "total_score": 0, "num_of_img": 0},
+		#{"location":"新北市", "total_score": 0, "num_of_img": 0},
 		{"location":"桃園市", "total_score": 0, "num_of_img": 0},
 		{"location":"臺中市", "total_score": 0, "num_of_img": 0},
 		{"location":"臺南市", "total_score": 0, "num_of_img": 0},
@@ -81,21 +81,21 @@ else:
 		{"location":"新竹縣", "total_score": 0, "num_of_img": 0},
 		{"location":"苗栗縣", "total_score": 0, "num_of_img": 0},
 		{"location":"彰化縣", "total_score": 0, "num_of_img": 0},
-		{"location":"南投縣", "total_score": 0, "num_of_img": 0},
+		# {"location":"南投縣", "total_score": 0, "num_of_img": 0},
 		{"location":"雲林縣", "total_score": 0, "num_of_img": 0},
-		{"location":"嘉義縣", "total_score": 0, "num_of_img": 0},
+		{"location":"嘉義", "total_score": 0, "num_of_img": 0},
 		{"location":"屏東縣", "total_score": 0, "num_of_img": 0},
 		{"location":"花蓮縣", "total_score": 0, "num_of_img": 0},
 		{"location":"臺東縣", "total_score": 0, "num_of_img": 0},
 		{"location":"澎湖縣", "total_score": 0, "num_of_img": 0},
 		{"location":"基隆市", "total_score": 0, "num_of_img": 0},
 		{"location":"新竹市", "total_score": 0, "num_of_img": 0},
-		{"location":"嘉義市", "total_score": 0, "num_of_img": 0},
+		#{"location":"嘉義市", "total_score": 0, "num_of_img": 0},
 		{"location":"金門縣", "total_score": 0, "num_of_img": 0},
 		{"location":"連江縣", "total_score": 0, "num_of_img": 0},
 		{"location":"綠島", "total_score": 0, "num_of_img": 0},
-		{"location":"蘭嶼", "total_score": 0, "num_of_img": 0},
-		{"location":"烈嶼", "total_score": 0, "num_of_img": 0}
+		{"location":"蘭嶼", "total_score": 0, "num_of_img": 0}
+		# {"location":"烈嶼", "total_score": 0, "num_of_img": 0}
 	]
 
 @app.before_request

@@ -5,11 +5,11 @@ const TaiwanMap = new Vue({
   },
   methods: {
     async getTaiwanMap() {
-      // const width = (this.$refs.map.offsetWidth).toFixed(),
-          // height = (this.$refs.map.offsetHeight).toFixed();
+      const width = (this.$refs.map.offsetWidth).toFixed(),
+          height = Number((this.$refs.map.offsetHeight).toFixed())+Number(135);
 
-      const width = 700,
-        height = 750;
+      // const width = 700,
+        // height = 750;
 
       // 判斷螢幕寬度，給不同放大值
       let mercatorScale, w = window.screen.width;
