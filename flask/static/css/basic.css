@@ -94,6 +94,11 @@ hr{
    width: 100px;
    height: 100px;
 }
+.process-img{
+   border-radius: 20px;
+   width: 600px;
+   height: 270px;
+}
 .us-card{
    margin-top: 10px;
 }

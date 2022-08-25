@@ -8,6 +8,9 @@ from coast_image import CoastImage
 import CNN_classifier_API_tflite as classiflier # comment out if no tensorflow
 import pickle
 from math import exp
+import threading
+
+sem = threading.Semaphore()
 
 app=Flask(__name__)
 
@@ -102,8 +105,8 @@ else:
 def refresh_data():
 	# get current time
 	currentTime = time.localtime()
-	curyr = currentTime.tm_year
-	curmonth = currentTime.tm_mon
+	currYear = currentTime.tm_year
+	currMonth = currentTime.tm_mon
 
 	# delcare global variable for modification
 	global ranking, allImg
@@ -116,9 +119,9 @@ def refresh_data():
 	# loop through every image to update credibility
 	for img in allImg:
 		month = img.getTimeStamp().tm_mon
-		yr = img.getTimeStamp().tm_year
-		diff = (curyr-yr)*12 + (curmonth-month)
-		credibility = exp(-diff*0.185) # 10% credibility after 1 year
+		year = img.getTimeStamp().tm_year
+		time_diff = (currYear - year) * 12 + (currMonth - month)
+		credibility = exp(-time_diff * 0.185) # 10% credibility after 1 year
 		img.setCredibility(credibility)
 		for city in newRank:
 			if city['location'] == img.getLoaction():
@@ -156,6 +159,7 @@ def action():
 def upload():
 	if request.method == 'POST':
 		if request.form.get('Upload') == 'Upload':
+			sem.acquire()
 			# get struct_time
 			times = time.localtime()
 			time_string = time.strftime("%Y%m%d_%H%M%S", times)
@@ -215,6 +219,7 @@ def upload():
 		else:
 			print("Error") # unknown
 	elif request.method == 'GET':
+		sem.release()
 		return render_template('upload.html', location = location_list)
 
 	# create uploadScore for result page
@@ -228,7 +233,7 @@ def upload():
 				"desc": newImg.getDesc(), 
 				"img": newImg.getImgName()
 				}
-	
+	sem.release()
 	return redirect(url_for('result'))
 
 
