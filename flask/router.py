@@ -62,7 +62,7 @@ uploadScore = {"score": 0,
 # load allImg pickle data if exist
 if os.path.exists('allImg.pickle'):
 	with open('allImg.pickle', 'rb') as file:
-		allImg = pickle.load(file)	
+		allImg = pickle.load(file) 
 else:
 	allImg = []
 
