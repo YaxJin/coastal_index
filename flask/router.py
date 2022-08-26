@@ -5,7 +5,7 @@ import os, pathlib
 from werkzeug.utils import secure_filename
 import time
 from coast_image import CoastImage
-import CNN_classifier_API_tflite as classiflier # comment out if no tensorflow
+# import CNN_classifier_API_tflite as classiflier # comment out if no tensorflow
 import pickle
 from math import exp
 import threading
@@ -25,7 +25,7 @@ if not os.path.isdir(UPLOAD_FOLDER):
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 model_name = "model.tflite"
-loaded_model = classiflier.load_model(model_name) # comment out if no tensorflow
+# loaded_model = classiflier.load_model(model_name) # comment out if no tensorflow
 
 classified_list = [
 	{'filename':"type1.png", 'Title':"海岸遊憩與日常生活", "Eng":"Shoreline and recreational activities"},
@@ -143,17 +143,6 @@ def refresh_data():
 def rank():
 	return render_template('rank.html', cityList = ranking, imgList=allImg)
 
-@app.route('/classified')
-def classified():
-	return render_template('classified.html', classified_list = classified_list)
-
-# @app.route('/intro')
-# def intro():
-# 	return render_template('intro.html')
-
-@app.route('/action')
-def action():
-	return render_template('action.html', img = action_img)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -180,7 +169,7 @@ def upload():
 			newImg = CoastImage(times, location, filename, {"score": 0, "objects": None}, desc=desc)
 
 			# run prediction, comment out if no tensorflow
-			predictions, objs = classiflier.predict_trash(save_path, loaded_model)
+			# predictions, objs = classiflier.predict_trash(save_path, loaded_model)
 			score = classiflier.calculate_score(predictions)
 			result = {"score": score, "objects": objs}
 
@@ -259,6 +248,10 @@ def more():
 def intro():
 	return render_template('intro.html')
 
+@app.route('/sysintro')
+def sysintro():
+	return render_template('sysintro.html')
+
 @app.route('/process')
 def process():
 	return render_template('process.html')
@@ -266,6 +259,14 @@ def process():
 @app.route('/rule')
 def rule():
 	return render_template('rule.html')
+
+@app.route('/classified')
+def classified():
+	return render_template('classified.html', classified_list = classified_list)
+
+@app.route('/action')
+def action():
+	return render_template('action.html', img = action_img)
 
 
 # @app.errorhandler(404)
