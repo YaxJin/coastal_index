@@ -24,7 +24,7 @@ if not os.path.isdir(UPLOAD_FOLDER):
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-model_name = "model.tflite"
+model_name = "model_2.tflite"
 loaded_model = classiflier.load_model(model_name) # comment out if no tensorflow
 
 classified_list = [
