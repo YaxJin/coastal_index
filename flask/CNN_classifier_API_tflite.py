@@ -65,7 +65,7 @@ def predict_trash(img_path, model):
 
 
 # mask prediction result on image
-def mask_prediction(img_path, classes, border=-1, alpha=0.25, beta=0.75, img_size=64):
+def mask_prediction(img_path, classes, border=-1, alpha=0.12, beta=0.88, img_size=64):
     c = 0
     # img = cv2.imread(img_path)
     # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
