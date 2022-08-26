@@ -95,6 +95,11 @@ hr{
    width: 100px;
    height: 100px;
 }
+.logo-img{
+   border-radius: 20px;
+   margin-top: 20px;
+   width: 200px;
+}
 .process-img{
    border-radius: 20px;
    margin-top: 10px;
