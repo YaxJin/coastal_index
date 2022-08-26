@@ -143,17 +143,6 @@ def refresh_data():
 def rank():
 	return render_template('rank.html', cityList = ranking, imgList=allImg)
 
-@app.route('/classified')
-def classified():
-	return render_template('classified.html', classified_list = classified_list)
-
-# @app.route('/intro')
-# def intro():
-# 	return render_template('intro.html')
-
-@app.route('/action')
-def action():
-	return render_template('action.html', img = action_img)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -259,6 +248,10 @@ def more():
 def intro():
 	return render_template('intro.html')
 
+@app.route('/sysintro')
+def sysintro():
+	return render_template('sysintro.html')
+
 @app.route('/process')
 def process():
 	return render_template('process.html')
@@ -266,6 +259,14 @@ def process():
 @app.route('/rule')
 def rule():
 	return render_template('rule.html')
+
+@app.route('/classified')
+def classified():
+	return render_template('classified.html', classified_list = classified_list)
+
+@app.route('/action')
+def action():
+	return render_template('action.html', img = action_img)
 
 
 # @app.errorhandler(404)

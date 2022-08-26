@@ -9,6 +9,7 @@ body{
 p,h1{
    color: white;
    font-family: 'Noto Serif TC', serif;
+   margin-top: 1em;
 }
 a, a:hover{
    text-decoration: none;
@@ -96,6 +97,7 @@ hr{
 }
 .process-img{
    border-radius: 20px;
+   margin-top: 10px;
    width: 600px;
    height: 270px;
 }
@@ -107,8 +109,11 @@ hr{
    padding: 1px;
    background-color: #26272765;
 }
-.carousel{
+/* .carousel{
    margin: 5vh 0;
+} */
+.carousel{
+   height: 400px;
 }
 .carousel-text{
    font-size: 20px;
@@ -172,6 +177,16 @@ hr{
    margin-bottom: 2px;
 }
 
+/* .accordion-button{
+   background-color: rgb(142, 32, 32);
+   color:rgba(0, 0, 0, 0.25);
+}
+.accordion-button.collapsed{
+   background-color: rgb(39, 165, 132);
+   color:rgba(0, 0, 0, 0.25);
+} */
+
+
 /* RWD */
 
 @media only screen and (min-width: 1200px) {
@@ -179,9 +194,9 @@ hr{
       padding: 5vh;
    }
    .card{
-      margin: 5vh 0;
-      padding: 5vh;
-      height: 62vh;
+      margin: 3vh 0;
+      padding: 4vh;
+      height: 70vh;
       border-radius: 20px;
    }
 }
@@ -191,16 +206,16 @@ hr{
    }
    .card{
       margin: 10vh 0;
-      padding: 5vh;
+      padding: 3vh;
       height: 62vh;
       border-radius: 20px;
    }
    body{
       height:102vh;
    }
-   .carousel {
+   /* .carousel {
       margin: 20vh 0;
-  }
+  } */
   .title{
    margin-top: 20px;   
    }
@@ -222,17 +237,17 @@ hr{
       padding: 5px;
    }
    .card{
-      margin-top: 5vh;
-      padding: 5vh;
+      margin: 5vh 1vh;
+      padding: 4vh;
       height:70vh;
       border-radius: 20px;
    }
    body{
       height:103vh;
    }
-   .carousel {
+   /* .carousel {
       margin: 20vh 0;
-  }
+  } */
   .title{
    margin-top: 10px;   
    }
