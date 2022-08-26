@@ -21,6 +21,9 @@ hr{
    size: 3px;
    color: #F5E0E0;
 }
+.li-padding{
+   padding-left: 32px;
+}
 /* .start-title{
    font-weight: bold;
    letter-spacing: 0.2rem;
@@ -248,6 +251,9 @@ hr{
    /* .carousel {
       margin: 20vh 0;
   } */
+  .li-padding{
+      padding-left: 0px;
+   }
   .title{
    margin-top: 10px;   
    }
