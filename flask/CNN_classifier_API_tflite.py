@@ -17,7 +17,6 @@ def load_model(model_name):
 
 def predict_trash(img_path, model):
     # load image
-    # test = tf.keras.preprocessing.image.load_img(img_path)
     test = load_and_resize_img(img_path)
     test = PIL.Image.fromarray(test, mode="RGB")
     s = test.size
@@ -29,8 +28,8 @@ def predict_trash(img_path, model):
     objects = []
     classes = []
 
-    for h in range(0, s[1], img_size):
-        for w in range(0,s[0],img_size):
+    for h in range(0, s[1], img_size//2):
+        for w in range(0,s[0],img_size//2):
             if w+img_size <= s[0] and h+img_size <= s[1]:
                 img = test.crop((w, h, w+img_size, h+img_size))
                 obj = {"x": w, "y": h, "w": img_size, "h": img_size, "prediction": None}
@@ -74,8 +73,8 @@ def mask_prediction(img_path, classes, border=-1, alpha=0.25, beta=0.75, img_siz
     
     height, weight, _ = img.shape
     
-    for h in range(0, height, img_size):
-        for w in range(0, weight, img_size):
+    for h in range(0, height, img_size//2):
+        for w in range(0, weight, img_size//2):
             if classes[c]==1:
                 mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (0,255,0), border) #green
             elif classes[c]==2:
@@ -87,7 +86,7 @@ def mask_prediction(img_path, classes, border=-1, alpha=0.25, beta=0.75, img_siz
             elif classes[c]==6:
                 mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (255,0,0), border) #red
             elif classes[c]==11:
-                mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (255,150,0), border) #red
+                mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (255,0,0), border) #red
             elif classes[c]==9:
                 mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (0,255,0), border) #yellow
             else:
@@ -96,8 +95,10 @@ def mask_prediction(img_path, classes, border=-1, alpha=0.25, beta=0.75, img_siz
             img = cv2.addWeighted(mask, alpha, img, beta, 0.0)
             
     # show result
-    plt.imshow(img)
-    plt.show()
+    # plt.imshow(img)
+    # plt.show()
+
+    return img
 
     
 # calculate dirty score
@@ -135,12 +136,12 @@ def load_and_resize_img(imgFilepath, resize_length=1280):
 
 # test
 if __name__ == "__main__":
-    model_name = r"C:\Users\admin\coastal_index\flask\model.tflite"
+    model_name = r"C:\Users\admin\coastal_index\flask\model_2.tflite"
     loaded_model = load_model(model_name)
 
-    imgPath = r"C:\Users\admin\Desktop\beach1\dirty5.jpg"
+    imgPath = r"C:\Users\admin\Desktop\beach1\dirty6.jpg"
     predictions, objs = predict_trash(imgPath, loaded_model)
     mask_prediction(imgPath, predictions)
     score = calculate_score(predictions)
     result = {"score": score, "objects": objs}
-    print(result)
+    print(score)
