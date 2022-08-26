@@ -109,8 +109,11 @@ hr{
    padding: 1px;
    background-color: #26272765;
 }
-.carousel{
+/* .carousel{
    margin: 5vh 0;
+} */
+.carousel{
+   height: 400px;
 }
 .carousel-text{
    font-size: 20px;
@@ -192,7 +195,7 @@ hr{
    }
    .card{
       margin: 3vh 0;
-      padding: 5vh;
+      padding: 4vh;
       height: 70vh;
       border-radius: 20px;
    }
@@ -210,9 +213,9 @@ hr{
    body{
       height:102vh;
    }
-   .carousel {
+   /* .carousel {
       margin: 20vh 0;
-  }
+  } */
   .title{
    margin-top: 20px;   
    }
@@ -242,9 +245,9 @@ hr{
    body{
       height:103vh;
    }
-   .carousel {
+   /* .carousel {
       margin: 20vh 0;
-  }
+  } */
   .title{
    margin-top: 10px;   
    }
