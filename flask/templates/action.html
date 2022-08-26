@@ -15,9 +15,16 @@
     <div class="container">
         <div class="card text-center">
             <div class="card-title">
-                <p class="fs-1 card-title">我可以做什麼...</p>
-                <hr>
-            </div>
+                <a class="position-absolute start-0 top-0" href="/more">
+                  <button type="button" class="btn btn-primary btn-sm">
+                      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                  </button>
+                </a>
+                <div class="text-center">
+                  <p class="fs-1">我可以做什麼...</p>
+                  <hr>
+                </div>
+              </div>
             <div class="row">
                 <div class="col">
                     {% for file in img %}
