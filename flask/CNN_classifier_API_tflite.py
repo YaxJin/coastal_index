@@ -90,13 +90,14 @@ def mask_prediction(img_path, classes, border=-1, alpha=0.25, beta=0.75, img_siz
             elif classes[c]==9:
                 mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (0,255,0), border) #yellow
             else:
-                mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (255,255,255), border) #white
+                mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (255,255,255), 0) #white
             c += 1
             img = cv2.addWeighted(mask, alpha, img, beta, 0.0)
             
     # show result
     # plt.imshow(img)
     # plt.show()
+    img = PIL.Image.fromarray(img, mode="RGB")
 
     return img
 

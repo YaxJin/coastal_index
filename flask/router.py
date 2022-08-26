@@ -19,6 +19,8 @@ bootstrap = Bootstrap5(app)
 SRC_PATH =  pathlib.Path(__file__).parent.absolute()
 UPLOAD_FOLDER = os.path.join(SRC_PATH, 'static', 'uploads')
 
+temp = None
+
 if not os.path.isdir(UPLOAD_FOLDER):
     os.mkdir(UPLOAD_FOLDER)
 
@@ -173,6 +175,14 @@ def upload():
 			score = classiflier.calculate_score(predictions)
 			result = {"score": score, "objects": objs}
 
+			# get prediction result image
+			global temp
+			resultImg = classiflier.mask_prediction(save_path, predictions)
+			result_filename = "result" + time_string + "_" + secure_filename(f.filename)
+			result_save_path = os.path.join(app.config['UPLOAD_FOLDER'], result_filename)
+			temp = result_filename
+			resultImg.save(result_save_path)
+
 			# set prediction result 
 			newImg.setResult(result)
 
@@ -225,10 +235,10 @@ def upload():
 	sem.release()
 	return redirect(url_for('result'))
 
-
 @app.route('/result')
 def result():
-	return render_template('upload_result.html', result = uploadScore)
+	return render_template('upload_result.html', result = uploadScore, resultImg=temp)
+
 
 @app.route('/about')
 def about():

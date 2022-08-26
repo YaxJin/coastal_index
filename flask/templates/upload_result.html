@@ -56,7 +56,7 @@
                                 <span class="text-danger fs-1">{{result.rank}}
                                     <span class="text fs-4">/{{result.total}}</span>
                                 </span>
-                                {% elif result.score > 55%}
+                                {% elif result.score > 55 %}
                                 <span class="text-warning fs-1">{{result.rank}}
                                     <span class="text fs-4">/{{result.total}}</span>
                                 </span>
@@ -68,7 +68,7 @@
                             </p>
                         </div>
                     </div>
-                    <img src="static/uploads/{{ result.img }}" alt="costal">
+                    <img src="static/uploads/{{ resultImg }}" alt="Result Img">
                     <p class="text-end image-info">
                         <span>{{result.time}}</span>
                         {% if result.location != "其他地區" %}
