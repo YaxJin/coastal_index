@@ -24,7 +24,7 @@ if not os.path.isdir(UPLOAD_FOLDER):
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-model_name = "flask/model.tflite"
+model_name = "model.tflite"
 loaded_model = classiflier.load_model(model_name) # comment out if no tensorflow
 
 classified_list = [
@@ -63,15 +63,15 @@ uploadScore = {"score": 0,
 				}
 
 # load allImg pickle data if exist
-if os.path.exists('flask/allImg.pickle'):
-	with open('flask/allImg.pickle', 'rb') as file:
+if os.path.exists('allImg.pickle'):
+	with open('allImg.pickle', 'rb') as file:
 		allImg = pickle.load(file) 
 else:
 	allImg = []
 
 # load ranking pickle data if exist
-if os.path.exists('flask/ranking.pickle'):
-	with open('flask/ranking.pickle', 'rb') as file:
+if os.path.exists('ranking.pickle'):
+	with open('ranking.pickle', 'rb') as file:
 		ranking = pickle.load(file)	
 else:
 	ranking = [{"location":"臺北", "total_score": 0, "num_of_img": 0},
@@ -133,9 +133,9 @@ def refresh_data():
 	ranking = newRank
 
 	# Pickling ranking and allImg data
-	with open('flask/allImg.pickle', 'wb') as file:
+	with open('allImg.pickle', 'wb') as file:
 		pickle.dump(allImg, file)
-	with open('flask/ranking.pickle', 'wb') as file:
+	with open('ranking.pickle', 'wb') as file:
 		pickle.dump(ranking, file)
 
 
@@ -211,10 +211,10 @@ def upload():
 			# print(ranking)
 
 			# Pickling allImg data
-			with open('flask/allImg.pickle', 'wb') as file:
+			with open('allImg.pickle', 'wb') as file:
 				pickle.dump(allImg, file)
 			# Pickling ranking data
-			with open('flask/ranking.pickle', 'wb') as file:
+			with open('ranking.pickle', 'wb') as file:
 				pickle.dump(ranking, file)
 		else:
 			print("Error") # unknown
