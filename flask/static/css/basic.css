@@ -13,6 +13,7 @@ p,h1{
 }
 a, a:hover{
    text-decoration: none;
+   color:rgb(24, 54, 8);
 }
 i{
    padding: inherit;
