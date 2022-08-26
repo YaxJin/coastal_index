@@ -203,7 +203,7 @@ hr{
    }
    .card{
       margin: 10vh 0;
-      padding: 5vh;
+      padding: 3vh;
       height: 62vh;
       border-radius: 20px;
    }
@@ -234,8 +234,8 @@ hr{
       padding: 5px;
    }
    .card{
-      margin-top: 5vh;
-      padding: 5vh;
+      margin: 5vh 1vh;
+      padding: 4vh;
       height:70vh;
       border-radius: 20px;
    }
