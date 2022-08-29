@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
+
 import tensorflow as tf
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 import os
 import cv2
@@ -28,6 +29,8 @@ def predict_trash(img_path, model):
     objects = []
     classes = []
 
+    # Crop the image into smaller 64x64 images 
+    # every 32 bits for prediction
     for h in range(0, s[1], img_size//2):
         for w in range(0,s[0],img_size//2):
             if w+img_size <= s[0] and h+img_size <= s[1]:
@@ -67,12 +70,12 @@ def predict_trash(img_path, model):
 # mask prediction result on image
 def mask_prediction(img_path, classes, border=-1, alpha=0.12, beta=0.88, img_size=64):
     c = 0
-    # img = cv2.imread(img_path)
-    # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     img = load_and_resize_img(img_path)
     
+    # get image shape
     height, weight, _ = img.shape
     
+    # mask image based on prediction result
     for h in range(0, height, img_size//2):
         for w in range(0, weight, img_size//2):
             if classes[c]==1:
@@ -88,7 +91,7 @@ def mask_prediction(img_path, classes, border=-1, alpha=0.12, beta=0.88, img_siz
             elif classes[c]==11:
                 mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (255,0,0), border) #red
             elif classes[c]==9:
-                mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (0,255,0), border) #yellow
+                mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (0,255,0), border) #green
             else:
                 mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (255,255,255), 0) #white
             c += 1
@@ -107,7 +110,10 @@ def calculate_score(predictions):
     unique, counts = np.unique(predictions, return_counts=True)
 
     d = dict(zip(unique, counts))
-
+    # class 1, 2, 3 are clean beaches
+    # class 4 is clean beach with grass
+    # class 9 is rocky beach
+    # class 6, 11 are trash
     total_beach = d.get(1, 0) + d.get(2, 0) + d.get(3, 0) + d.get(4, 0) + d.get(9, 0) + d.get(6, 0) + d.get(11,0)
     trash = d.get(6, 0) + d.get(11,0)
     if total_beach == 0:
