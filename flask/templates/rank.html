@@ -80,7 +80,7 @@
                                                     <div class="score fs-4 col-md-6">
                                                         <p>污染分數：{{ '%0.1f' | format(img.getResult()['score']*img.getCredibility() |float )}}</p>
                                                     </div>
-                                                    <img src="static/uploads/{{ img.getImgName() }}" style="padding: 0;" alt="{{ img.getImgName() }}">
+                                                    <img src="static/uploads/{{ img.getImgName() }}" onclick="change(this)" style="padding: 0;" alt="{{ img.getImgName() }}">
                                                     <p class="text-end image-info"> {{ '%04d/%02d/%02d' | format(img.getTimeStamp().tm_year, img.getTimeStamp().tm_mon, img.getTimeStamp().tm_mday) }}</p>
                                                     <p class="col-12">{{img.getDesc()}}</p>
                                                     <hr>
@@ -103,7 +103,7 @@
                                                     <div class="score fs-4 col-md-6">
                                                         <p>污染分數：{{ '%0.1f' | format(img.getResult()['score']*img.getCredibility() |float )}}</p>
                                                     </div>
-                                                    <img src="static/uploads/{{ img.getImgName() }}" style="padding: 0;" alt="{{ img.getImgName() }}">
+                                                    <img src="static/uploads/{{ img.getImgName() }}"  onclick="change(this)" style="padding: 0;" alt="{{ img.getImgName() }}">
                                                     <p class="text-end image-info"> {{ '%04d/%02d/%02d' | format(img.getTimeStamp().tm_year, img.getTimeStamp().tm_mon, img.getTimeStamp().tm_mday) }}</p>
                                                     <p class="col-12">{{img.getDesc()}}</p>
                                                     <hr>
@@ -148,6 +148,26 @@
             </a>
         </div>
     </div>
+    <script  language="JavaScript">
+        
+        function change(img){
+            var str = img.src;
+            const folder = str.split('/');
+            const name = folder[5];
+            const compare = folder[5].indexOf("result");
+            if(compare == 0){
+                //the image is Ai result
+                folder[5].replace("result","");
+            } else {
+                //the image is normal image (comapre == -1)
+                folder[5] = 'result' + folder[5];
+                img.src = folder.join('/');
+            }
+            console.log(name);
+            console.log(compare);
+            console.log("test",folder.join('/'));
+            }
+        </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
     <script src="//d3js.org/d3.v3.min.js"></script>
