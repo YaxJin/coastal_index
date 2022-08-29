@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <body>
     <div class="container">
       <div class="card overflow-auto">
           <div class="card-title text-center">
@@ -66,7 +65,7 @@
             </div>
             <hr class="d-block d-xl-none">
             <div class="us-card col-lg-4">
-              <img class="avatar-img" src="/static/img/Bob_cat.png" alt="avatar">
+              <img class="avatar-img" id="target" src="/static/img/Bob_cat.png" alt="avatar">
               <p class="fs-3 ">Bob</p>
               <li class="text">AI + 前後端工程師</li>
             </div>
@@ -77,6 +76,22 @@
               <li class="text">UI/UX + 前後端工程師</li>
             </div>
           </div>
+      </div>
+      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-meme">
+        Launch demo modal
+      </button> -->
+      <div class="modal fade" id="modal-meme" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content  overflow-auto">
+            <!-- <div class="modal-header" style="margin: 0 20px;">
+              <p class="modal-title fs-1"></p>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div> -->
+            <div class="modal-body text-center">
+              <img style="width: 80%;" src="static/img/meme.png" alt="Yeeee!">
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row justify-content-center text-center">
         <a  class="col-md-6 mx-auto d-none d-xl-block" href="/">
@@ -91,6 +106,20 @@
         </a>
       </div>
     </div>
-  </body>
+    <script>
+      var modal = new bootstrap.Modal(document.getElementById('modal-meme'), {
+        keyboard: false
+      })
+      var i=0;
+      document.getElementById("target").onclick = function() {open()};
+      
+      function open() {
+        i++;
+        if(i==5){
+          modal.show();
+          i=0;
+        }
+      }
+      </script>
 </body>
 </html>
