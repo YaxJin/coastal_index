@@ -153,7 +153,6 @@
         function change(img){
             var str = img.src;
             const folder = str.split('/');
-            const name = folder[5];
             const compare = folder[5].indexOf("result");
             if(compare == 0){
                 //the image is Ai result
@@ -164,10 +163,6 @@
                 folder[5] = 'result' + folder[5];
                 img.src = folder.join('/');
             }
-            console.log(name);
-            console.log(compare);
-            console.log(folder[5].replace(/2022/,""));
-            console.log("test",folder.join('/'));
             }
         </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js"></script>
