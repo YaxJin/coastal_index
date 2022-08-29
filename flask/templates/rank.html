@@ -158,6 +158,7 @@
             if(compare == 0){
                 //the image is Ai result
                 folder[5].replace("result","");
+                img.src = folder.join('/');
             } else {
                 //the image is normal image (comapre == -1)
                 folder[5] = 'result' + folder[5];
