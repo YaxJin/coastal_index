@@ -1,6 +1,6 @@
 # from crypt import methods
 from flask_bootstrap import Bootstrap5
-from flask import Flask, render_template,request, redirect, url_for
+from flask import Flask, render_template,request, redirect, url_for, session
 import os, pathlib
 from werkzeug.utils import secure_filename
 import time
@@ -10,25 +10,29 @@ import pickle
 from math import exp
 import threading
 
+# Set up
 sem = threading.Semaphore()
 
 app=Flask(__name__)
 
 bootstrap = Bootstrap5(app)
 
+app.config['SECRET_KEY'] = os.urandom(24)
+
+# create folder for uploaded images
 SRC_PATH =  pathlib.Path(__file__).parent.absolute()
 UPLOAD_FOLDER = os.path.join(SRC_PATH, 'static', 'uploads')
-
-temp = None
 
 if not os.path.isdir(UPLOAD_FOLDER):
     os.mkdir(UPLOAD_FOLDER)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# load AI model
 model_name = "model_2.tflite"
 loaded_model = classiflier.load_model(model_name) # comment out if no tensorflow
 
+# data for rendering
 classified_list = [
 	{'filename':"type1.png", 'Title':"海岸遊憩與日常生活", "Eng":"Shoreline and recreational activities"},
 	{'filename':"type2.png", 'Title':"海上活動與船隻", "Eng":"Ocean/Waterway Activities"},
@@ -61,7 +65,8 @@ uploadScore = {"score": 0,
 				"location": "", 
 				"time": "", 
 				"desc": "", 
-				"img": ""
+				"img": "",
+				"resultImg": ""
 				}
 
 # load allImg pickle data if exist
@@ -103,6 +108,8 @@ else:
 		# {"location":"烈嶼", "total_score": 0, "num_of_img": 0}
 	]
 
+# refresh credibility before every request
+# change to refresh periodically.
 @app.before_request
 def refresh_data():
 	# get current time
@@ -176,11 +183,9 @@ def upload():
 			result = {"score": score, "objects": objs}
 
 			# get prediction result image
-			global temp
 			resultImg = classiflier.mask_prediction(save_path, predictions)
 			result_filename = "result" + time_string + "_" + secure_filename(f.filename)
 			result_save_path = os.path.join(app.config['UPLOAD_FOLDER'], result_filename)
-			temp = result_filename
 			resultImg.save(result_save_path)
 
 			# set prediction result 
@@ -201,9 +206,9 @@ def upload():
 			ranking = sorted(ranking, key=lambda x : x['total_score']/x['num_of_img'] if x['num_of_img'] > 0 else x['total_score'], reverse=True)
 			
 			# print result for debugging
-			#for img in allImg:
-			#	print(img.getTimeStamp())
-			#	print(img.getLoaction()) 
+			# for img in allImg:
+			# 	print(img.getTimeStamp())
+			# 	print(img.getLoaction()) 
 			#	print(img.getImgName())
 			#	print(img.getResult()["score"])
 			#	print(img.getDesc())
@@ -218,32 +223,30 @@ def upload():
 		else:
 			print("Error") # unknown
 	elif request.method == 'GET':
-		sem.release()
 		return render_template('upload.html', location = location_list)
 
 	# create uploadScore for result page
 	display_time = time.strftime("%Y/%m/%d", times)
-	global uploadScore
-	uploadScore = {"score": newImg.getResult()["score"], 
+	uploadScore_1 = {"score": newImg.getResult()["score"], 
 				"rank": allImg.index(newImg)+1, 
 				"total":len(allImg), 
 				"location": newImg.getLoaction(), 
 				"time": display_time, 
 				"desc": newImg.getDesc(), 
-				"img": newImg.getImgName()
+				"img": newImg.getImgName(),
+				"resultImg": result_filename
 				}
+	session['latest'] = uploadScore_1
 	sem.release()
 	return redirect(url_for('result'))
 
 @app.route('/result')
 def result():
-	return render_template('upload_result.html', result = uploadScore, resultImg=temp)
-
+	return render_template('upload_result.html', result = session.get('latest', uploadScore))
 
 @app.route('/about')
 def about():
 	return render_template('aboutUS.html')
-
 
 @app.route('/404')
 def error():
