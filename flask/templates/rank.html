@@ -157,7 +157,7 @@
             const compare = folder[5].indexOf("result");
             if(compare == 0){
                 //the image is Ai result
-                folder[5].replace("result","");
+                folder[5] = folder[5].replace("result","");
                 img.src = folder.join('/');
             } else {
                 //the image is normal image (comapre == -1)
@@ -166,6 +166,7 @@
             }
             console.log(name);
             console.log(compare);
+            console.log(folder[5].replace(/2022/,""));
             console.log("test",folder.join('/'));
             }
         </script>
