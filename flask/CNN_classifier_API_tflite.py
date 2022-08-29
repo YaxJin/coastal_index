@@ -78,6 +78,7 @@ def mask_prediction(img_path, classes, border=-1, alpha=0.12, beta=0.88, img_siz
     # mask image based on prediction result
     for h in range(0, height, img_size//2):
         for w in range(0, weight, img_size//2):
+            mask = None
             if classes[c]==1:
                 mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (0,255,0), border) #green
             elif classes[c]==2:
@@ -93,9 +94,11 @@ def mask_prediction(img_path, classes, border=-1, alpha=0.12, beta=0.88, img_siz
             elif classes[c]==9:
                 mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (0,255,0), border) #green
             else:
-                mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (255,255,255), 0) #white
+                # mask = cv2.rectangle(img.copy(), (w, h), (w+img_size, h+img_size), (255,255,255), 0) #white
+                pass
             c += 1
-            img = cv2.addWeighted(mask, alpha, img, beta, 0.0)
+            if mask is not None:
+                img = cv2.addWeighted(mask, alpha, img, beta, 0.0)
             
     # show result
     # plt.imshow(img)
