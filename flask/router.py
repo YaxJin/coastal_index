@@ -5,7 +5,7 @@ import os, pathlib
 from werkzeug.utils import secure_filename
 import time
 from coast_image import CoastImage
-import CNN_classifier_API_tflite as classiflier # comment out if no tensorflow
+# import CNN_classifier_API_tflite as classiflier # comment out if no tensorflow
 import pickle
 from math import exp
 import threading
@@ -34,7 +34,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # load AI model
 model_name = "model_2.tflite"
-loaded_model = classiflier.load_model(model_name) # comment out if no tensorflow
+# loaded_model = classiflier.load_model(model_name) # comment out if no tensorflow
 
 # data for rendering
 classified_list = [
@@ -169,6 +169,7 @@ def rank():
 def upload():
 	if request.method == 'POST':
 		if request.form.get('Upload') == 'Upload':
+			render_template('upload.html', location = location_list, submit = 1)
 			# start = timeit.default_timer() # debugging: check runtime
 			sem.acquire()
 			# get struct_time
@@ -191,8 +192,8 @@ def upload():
 			newImg = CoastImage(times, location, filename, {"score": 0, "objects": None}, desc=desc)
 
 			# run prediction, comment out if no tensorflow
-			predictions, objs = classiflier.predict_trash(save_path, loaded_model)
-			score = classiflier.calculate_score(predictions)
+			# predictions, objs = classiflier.predict_trash(save_path, loaded_model)
+			# score = classiflier.calculate_score(predictions)
 			result = {"score": score, "objects": objs}
 
 			# get prediction result image
@@ -235,8 +236,9 @@ def upload():
 				pickle.dump(ranking, file)
 		else:
 			print("Error") # unknown
+			render_template('upload.html', location = location_list, submit = 0)
 	elif request.method == 'GET':
-		return render_template('upload.html', location = location_list)
+		return render_template('upload.html', location = location_list, submit = 0)
 
 	# create uploadScore for result page
 	display_time = time.strftime("%Y/%m/%d", times)
