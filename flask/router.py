@@ -9,15 +9,19 @@ import CNN_classifier_API_tflite as classiflier # comment out if no tensorflow
 import pickle
 from math import exp
 import threading
+# import timeit
+# import atexit
+# from apscheduler.schedulers.background import BackgroundScheduler
 
-# Set up
+# Set up thread
 sem = threading.Semaphore()
 
 app=Flask(__name__)
 
 bootstrap = Bootstrap5(app)
 
-app.config['SECRET_KEY'] = os.urandom(24)
+app.config['SECRET_KEY'] = os.urandom(24) # random key
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024    # 5 Mb limit
 
 # create folder for uploaded images
 SRC_PATH =  pathlib.Path(__file__).parent.absolute()
@@ -108,9 +112,9 @@ else:
 		# {"location":"烈嶼", "total_score": 0, "num_of_img": 0}
 	]
 
-# refresh credibility before every request
+# refresh credibility when render rank.html
 # change to refresh periodically.
-@app.before_request
+# @app.before_request
 def refresh_data():
 	# get current time
 	currentTime = time.localtime()
@@ -147,9 +151,17 @@ def refresh_data():
 	with open('ranking.pickle', 'wb') as file:
 		pickle.dump(ranking, file)
 
+# Bug: Run refresh data every day
+# scheduler = BackgroundScheduler()
+# scheduler.add_job(func=refresh_data, trigger="interval", hours=24)
+# scheduler.start()
+
+# # Shut down the scheduler when exiting the app
+# atexit.register(lambda: scheduler.shutdown())
 
 @app.route('/')
 def rank():
+	refresh_data()
 	return render_template('rank.html', cityList = ranking, imgList=allImg)
 
 
@@ -157,6 +169,7 @@ def rank():
 def upload():
 	if request.method == 'POST':
 		if request.form.get('Upload') == 'Upload':
+			# start = timeit.default_timer() # debugging: check runtime
 			sem.acquire()
 			# get struct_time
 			times = time.localtime()
@@ -238,6 +251,11 @@ def upload():
 				}
 	session['latest'] = uploadScore_1
 	sem.release()
+
+	# debugging: check runtime 
+	# stop = timeit.default_timer()
+	# print('Time: ', stop - start) 
+
 	return redirect(url_for('result'))
 
 @app.route('/result')
@@ -251,7 +269,6 @@ def about():
 @app.route('/404')
 def error():
 	return render_template('404.html')
-
 
 @app.route('/more')
 def more():
@@ -292,7 +309,6 @@ def action():
 @app.route('/test')
 def test():
 	return render_template('(x)test.html')
-
 
 
 if __name__ == '__main__':
