@@ -37,6 +37,13 @@ python router.py
 - 地圖hover時顯示地區名稱
 
 # Contributors
+<table>
+  <tr>
+   <td align="center"><a href="https://sjtuytc.github.io/"><img src="flask/static/img/Bob_cat.png" width="100px;" alt="bob" width="100px;"/><br /><sub><b>Bob Ho</b></sub></a><br /><a href="https://github.com/dvlab-research/BlockNeRFPytorch/commits?author=sjtuytc" title="Code">💻</a> <a href="#maintenance-sjtuytc" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/SEUleaderYang"><img src="https://avatars.githubusercontent.com/u/55042050?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ya-Jin</b></sub></a><br /><a href="https://github.com/dvlab-research/BlockNeRFPytorch/commits?author=SEUleaderYang" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/SEUleaderYang"><img src= "flask/static/img/emma.png" width="100px;" alt="bob"/><br /><sub><b>Emma Liu</b></sub></a><br /><a href="https://github.com/dvlab-research/BlockNeRFPytorch/commits?author=SEUleaderYang" title="Code">💻</a></td>
+  </tr>
+</table>
 
 
 # Resources
