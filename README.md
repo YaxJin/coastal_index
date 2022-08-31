@@ -44,7 +44,10 @@ python router.py
     <td align="center"><a href="https://github.com/Emmaliu-coder"><img src= "flask/static/img/emma.png" width="100px;" alt="Emma"/><br /><sub><b>Emma Liu</b></sub></a><br /><a href="https://github.com/YaxJin/coastal_index/commits?author=Emmaliu-coder" title="Code">💻</a></td>
   </tr>
 </table>
+
 # Resources
+[2022 VIA Summer Internship](https://www.viatech.com/en/careers/internships/)
 
 
-###### tags: `威盛電子`
+
+
