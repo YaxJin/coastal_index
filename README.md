@@ -39,13 +39,11 @@ python router.py
 # Contributors
 <table>
   <tr>
-   <td align="center"><a href="https://sjtuytc.github.io/"><img src="flask/static/img/Bob_cat.png" width="100px;" alt="bob" width="100px;"/><br /><sub><b>Bob Ho</b></sub></a><br /><a href="https://github.com/dvlab-research/BlockNeRFPytorch/commits?author=sjtuytc" title="Code">💻</a> <a href="#maintenance-sjtuytc" title="Maintenance">🚧</a></td>
-    <td align="center"><a href="https://github.com/SEUleaderYang"><img src="https://avatars.githubusercontent.com/u/55042050?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ya-Jin</b></sub></a><br /><a href="https://github.com/dvlab-research/BlockNeRFPytorch/commits?author=SEUleaderYang" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/SEUleaderYang"><img src= "flask/static/img/emma.png" width="100px;" alt="bob"/><br /><sub><b>Emma Liu</b></sub></a><br /><a href="https://github.com/dvlab-research/BlockNeRFPytorch/commits?author=SEUleaderYang" title="Code">💻</a></td>
+   <td align="center"><a href="https://github.com/bobho1999"><img src="flask/static/img/Bob_cat.png" width="100px;" alt="bob" width="100px;"/><br /><sub><b>Bob Ho</b></sub></a><br /><a href="https://github.com/YaxJin/coastal_index/commits?author=bobho1999" title="Code">💻</a> <a href="https://github.com/YaxJin/coastal_index/commits?author=bobho1999" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/YaxJin"><img src="flask/static/img/YJ.png" width="100px;" alt="YaJin"/><br /><sub><b>Ya-Jin</b></sub></a><br /><a href="https://github.com/YaxJin/coastal_index/commits?author=YaxJin" title="Code">💻</a> <a href="https://github.com/YaxJin/coastal_index/commits?author=YaxJin" title="UI/UX Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/Emmaliu-coder"><img src= "flask/static/img/emma.png" width="100px;" alt="Emma"/><br /><sub><b>Emma Liu</b></sub></a><br /><a href="https://github.com/YaxJin/coastal_index/commits?author=Emmaliu-coder" title="Code">💻</a></td>
   </tr>
 </table>
-
-
 # Resources
 
 
