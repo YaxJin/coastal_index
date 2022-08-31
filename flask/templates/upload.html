@@ -39,12 +39,13 @@
                 </div>
                 <div class="d-md-none d-lg-block" style="margin: 2.5vh 0;"></div>
                 <div class="align-text-bottom">
-                    <button type="submit" name="Upload" class="btn btn-primary col-lg-3" onclick="loading(this)" value="Upload">
+                    <button type="submit" name="Upload" class="btn btn-primary col-lg-3" id="submit-btn" value="Upload">
                         <i class="fa fa-paper-plane-o"></i>送出
                     </button>
                 </div>
             </div>
         </form>
+        <p class="d-none" id="submit-tag">{{submit}}</p><!-- for read flask tag -->
         <div class="position-absolute bottom-0 end-0">
             <a href="/more">
                 <button type="button" class="btn-round btn-primary">
@@ -57,16 +58,15 @@
             辨識中
         </button>
     </div>
-    <script  language="JavaScript">
+    <!-- <script  language="JavaScript">
         var load =  document.getElementById('load-btn').innerHTML;
-    
-        function loading(btn){
-            // if(){
-                
-            // }
+        var btn = document.getElementById('submit-btn').innerHTML;
+        var tag = document.getElementById('submit-tag').innerHTML;
+        console.log(tag);
+        if(tag){   
           btn.disabled = true;
           btn.innerHTML = load; //change HTML element
         }
-      </script>
+      </script> -->
 </body>
 </html>
