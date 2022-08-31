@@ -99,10 +99,7 @@ def mask_prediction(img_path, classes, border=-1, alpha=0.12, beta=0.88, img_siz
             c += 1
             if mask is not None:
                 img = cv2.addWeighted(mask, alpha, img, beta, 0.0)
-            
-    # show result
-    # plt.imshow(img)
-    # plt.show()
+
     img = PIL.Image.fromarray(img, mode="RGB")
 
     return img
@@ -113,10 +110,10 @@ def calculate_score(predictions):
     unique, counts = np.unique(predictions, return_counts=True)
 
     d = dict(zip(unique, counts))
-    # class 1, 2, 3 are clean beaches
-    # class 4 is clean beach with grass
-    # class 9 is rocky beach
-    # class 6, 11 are trash
+    # class 1, 2, 3 -> clean beaches
+    # class 4       -> clean beach with grass
+    # class 9       -> rocky beach
+    # class 6, 11   -> trash
     total_beach = d.get(1, 0) + d.get(2, 0) + d.get(3, 0) + d.get(4, 0) + d.get(9, 0) + d.get(6, 0) + d.get(11,0)
     trash = d.get(6, 0) + d.get(11,0)
     if total_beach == 0:
@@ -151,7 +148,9 @@ if __name__ == "__main__":
 
     imgPath = r"C:\Users\admin\Desktop\beach1\dirty6.jpg"
     predictions, objs = predict_trash(imgPath, loaded_model)
-    mask_prediction(imgPath, predictions)
+    result_img = mask_prediction(imgPath, predictions)
+    # plt.imshow(result_img)
+    # plt.show()
     score = calculate_score(predictions)
     result = {"score": score, "objects": objs}
     print(score)

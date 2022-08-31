@@ -73,44 +73,49 @@ uploadScore = {"score": 0,
 				"resultImg": ""
 				}
 
-# load allImg pickle data if exist
-if os.path.exists('allImg.pickle'):
-	with open('allImg.pickle', 'rb') as file:
-		allImg = pickle.load(file) 
-else:
-	allImg = []
+def load_data():
+	# load allImg pickle data if exist
+	if os.path.exists('allImg.pickle'):
+		with open('allImg.pickle', 'rb') as file:
+			allImg = pickle.load(file) 
+	else:
+		allImg = []
 
-# load ranking pickle data if exist
-if os.path.exists('ranking.pickle'):
-	with open('ranking.pickle', 'rb') as file:
-		ranking = pickle.load(file)	
-else:
-	ranking = [{"location":"臺北", "total_score": 0, "num_of_img": 0},
-		#{"location":"新北市", "total_score": 0, "num_of_img": 0},
-		{"location":"桃園市", "total_score": 0, "num_of_img": 0},
-		{"location":"臺中市", "total_score": 0, "num_of_img": 0},
-		{"location":"臺南市", "total_score": 0, "num_of_img": 0},
-		{"location":"高雄市", "total_score": 0, "num_of_img": 0},
-		{"location":"宜蘭縣", "total_score": 0, "num_of_img": 0},
-		{"location":"新竹縣", "total_score": 0, "num_of_img": 0},
-		{"location":"苗栗縣", "total_score": 0, "num_of_img": 0},
-		{"location":"彰化縣", "total_score": 0, "num_of_img": 0},
-		# {"location":"南投縣", "total_score": 0, "num_of_img": 0},
-		{"location":"雲林縣", "total_score": 0, "num_of_img": 0},
-		{"location":"嘉義", "total_score": 0, "num_of_img": 0},
-		{"location":"屏東縣", "total_score": 0, "num_of_img": 0},
-		{"location":"花蓮縣", "total_score": 0, "num_of_img": 0},
-		{"location":"臺東縣", "total_score": 0, "num_of_img": 0},
-		{"location":"澎湖縣", "total_score": 0, "num_of_img": 0},
-		{"location":"基隆市", "total_score": 0, "num_of_img": 0},
-		{"location":"新竹市", "total_score": 0, "num_of_img": 0},
-		#{"location":"嘉義市", "total_score": 0, "num_of_img": 0},
-		{"location":"金門縣", "total_score": 0, "num_of_img": 0},
-		{"location":"連江縣", "total_score": 0, "num_of_img": 0},
-		{"location":"綠島", "total_score": 0, "num_of_img": 0},
-		{"location":"蘭嶼", "total_score": 0, "num_of_img": 0}
-		# {"location":"烈嶼", "total_score": 0, "num_of_img": 0}
-	]
+	# load ranking pickle data if exist
+	if os.path.exists('ranking.pickle'):
+		with open('ranking.pickle', 'rb') as file:
+			ranking = pickle.load(file)	
+	else:
+		ranking = [{"location":"臺北", "total_score": 0, "num_of_img": 0},
+			#{"location":"新北市", "total_score": 0, "num_of_img": 0},
+			{"location":"桃園市", "total_score": 0, "num_of_img": 0},
+			{"location":"臺中市", "total_score": 0, "num_of_img": 0},
+			{"location":"臺南市", "total_score": 0, "num_of_img": 0},
+			{"location":"高雄市", "total_score": 0, "num_of_img": 0},
+			{"location":"宜蘭縣", "total_score": 0, "num_of_img": 0},
+			{"location":"新竹縣", "total_score": 0, "num_of_img": 0},
+			{"location":"苗栗縣", "total_score": 0, "num_of_img": 0},
+			{"location":"彰化縣", "total_score": 0, "num_of_img": 0},
+			# {"location":"南投縣", "total_score": 0, "num_of_img": 0},
+			{"location":"雲林縣", "total_score": 0, "num_of_img": 0},
+			{"location":"嘉義", "total_score": 0, "num_of_img": 0},
+			{"location":"屏東縣", "total_score": 0, "num_of_img": 0},
+			{"location":"花蓮縣", "total_score": 0, "num_of_img": 0},
+			{"location":"臺東縣", "total_score": 0, "num_of_img": 0},
+			{"location":"澎湖縣", "total_score": 0, "num_of_img": 0},
+			{"location":"基隆市", "total_score": 0, "num_of_img": 0},
+			{"location":"新竹市", "total_score": 0, "num_of_img": 0},
+			#{"location":"嘉義市", "total_score": 0, "num_of_img": 0},
+			{"location":"金門縣", "total_score": 0, "num_of_img": 0},
+			{"location":"連江縣", "total_score": 0, "num_of_img": 0},
+			{"location":"綠島", "total_score": 0, "num_of_img": 0},
+			{"location":"蘭嶼", "total_score": 0, "num_of_img": 0}
+			# {"location":"烈嶼", "total_score": 0, "num_of_img": 0}
+		]
+	return ranking, allImg
+
+
+ranking, allImg = load_data()
 
 # refresh credibility when render rank.html
 # change to refresh periodically.
@@ -123,6 +128,7 @@ def refresh_data():
 
 	# delcare global variable for modification
 	global ranking, allImg
+	ranking, allImg = load_data()
 
 	# clear all total score for refreshing
 	newRank = ranking.copy()
@@ -151,19 +157,20 @@ def refresh_data():
 	with open('ranking.pickle', 'wb') as file:
 		pickle.dump(ranking, file)
 
-# Bug: Run refresh data every day
+# # TODO: Run refresh data every day instead
+# # of refresh when rendering rank.html
 # scheduler = BackgroundScheduler()
-# scheduler.add_job(func=refresh_data, trigger="interval", hours=24)
+# scheduler.add_job(func=refresh_data, trigger="interval", seconds=60)
 # scheduler.start()
 
 # # Shut down the scheduler when exiting the app
 # atexit.register(lambda: scheduler.shutdown())
 
+
 @app.route('/')
 def rank():
 	refresh_data()
 	return render_template('rank.html', cityList = ranking, imgList=allImg)
-
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
