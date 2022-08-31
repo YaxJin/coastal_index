@@ -70,27 +70,34 @@
                                     </a>
                                     <div class="collapse" data-bs-parent="#accordion" data-bs-toggle="collapse" id="rank_img{{loop.index}}">
                                         <div class="collapse-card">
+                                        {% set record_info = dict() %}
                                         {% for img in imgList %}
                                             {% if img.getLoaction() == city.location %}
-                                            {% if city.num_of_img > 0 %}
-                                                <div class="row collapse-card-body">
-                                                    <div class="score fs-4 col-md-6">
-                                                        <p>污染排名：{{loop.index0 + 1}}</p>
+                                                {% set key =  city.location %}
+                                                {% if key in record_info %}
+                                                    {% set _dummy = record_info.update( {key: record_info[key]+1 })  %}
+                                                {% else %}
+                                                    {% set _dummy = record_info.update({ key:1 }) %}
+                                                {% endif %}
+                                                {% if city.num_of_img > 0 and record_info[city.location] <= 10 %}
+                                                    <div class="row collapse-card-body">
+                                                        <div class="score fs-4 col-md-6">
+                                                            <p>污染排名：{{loop.index}}</p>
+                                                        </div>
+                                                        <div class="score fs-4 col-md-6">
+                                                            <!-- <p id="count{{loop.index}}">{{record_info[city.location] }}</p> -->
+                                                            <p>污染分數：{{ '%0.1f' | format(img.getResult()['score']*img.getCredibility() |float )}}</p>
+                                                        </div>
+                                                        <img src="static/uploads/{{ img.getImgName() }}" onclick="change(this)" style="padding: 0;" alt="{{ img.getImgName() }}">
+                                                        <p class="text-end image-info"> {{ '%04d/%02d/%02d' | format(img.getTimeStamp().tm_year, img.getTimeStamp().tm_mon, img.getTimeStamp().tm_mday) }}</p>
+                                                        <p class="col-12">{{img.getDesc()}}</p>
+                                                        <hr>
                                                     </div>
-                                                    <div class="score fs-4 col-md-6">
-                                                        <p>污染分數：{{ '%0.1f' | format(img.getResult()['score']*img.getCredibility() |float )}}</p>
-                                                    </div>
-                                                    <img src="static/uploads/{{ img.getImgName() }}" onclick="change(this)" style="padding: 0;" alt="{{ img.getImgName() }}">
-                                                    <p class="text-end image-info"> {{ '%04d/%02d/%02d' | format(img.getTimeStamp().tm_year, img.getTimeStamp().tm_mon, img.getTimeStamp().tm_mday) }}</p>
-                                                    <p class="col-12">{{img.getDesc()}}</p>
-                                                    <hr>
-                                                </div>
-                                            {% endif %}
+                                                {% endif %}
                                             {% endif %}
                                         {% endfor %}
                                         </div>
                                     </div>
-                                    
                                     <p class="d-none" id="num">{{imgList|length}}</p>
                                         {% for img in imgList %}
                                         <div class="d-none d-xl-block" id="img">

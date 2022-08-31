@@ -54,6 +54,7 @@ const TaiwanMap = new Vue({
             id: (d) => 'city' + d.properties.COUNTYCODE
           })
           .on('click', d => {
+            counter = 1
             if(d.properties.COUNTYCODE != 'M'){
               myModal.show()
             }
@@ -69,7 +70,8 @@ const TaiwanMap = new Vue({
             // var str = document.getElementById('img').innerHTML
             for (i = 1; i < num; i++) {
               // console.log(document.getElementById('name'+step).innerHTML)
-              if(document.getElementById('name'+i).innerHTML == cityName){
+              if(document.getElementById('name'+i).innerHTML == cityName && counter <= 10){
+                counter += 1
                 if(tag != 0){
                   str = str + document.getElementById('img'+i).innerHTML
                 }
