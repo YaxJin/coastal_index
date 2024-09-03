@@ -46,6 +46,7 @@ python router.py
 </table>
 
 # Resources
+[AI (愛)上淨灘](https://learn.pixetto.ai/coastal-index/)
 [2022 VIA Summer Internship](https://www.viatech.com/en/careers/internships/)
 
 
